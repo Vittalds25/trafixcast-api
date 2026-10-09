@@ -1,0 +1,57 @@
+# Curated Chennai areas. Coordinates are approximate area centres.
+- {id: adyar, name: Adyar, lat: 13.0012, lon: 80.2565}
+- {id: alwarpet, name: Alwarpet, lat: 13.0339, lon: 80.2533}
+- {id: ambattur, name: Ambattur, lat: 13.1143, lon: 80.1548}
+- {id: aminjikarai, name: Aminjikarai, lat: 13.0722, lon: 80.2230}
+- {id: anna-nagar, name: Anna Nagar, lat: 13.0850, lon: 80.2101}
+- {id: anna-salai, name: Anna Salai / Thousand Lights, lat: 13.0600, lon: 80.2550}
+- {id: ashok-nagar, name: Ashok Nagar, lat: 13.0373, lon: 80.2123}
+- {id: avadi, name: Avadi, lat: 13.1067, lon: 80.1017}
+- {id: besant-nagar, name: Besant Nagar, lat: 13.0003, lon: 80.2667}
+- {id: central, name: Chennai Central, lat: 13.0827, lon: 80.2707}
+- {id: chromepet, name: Chromepet, lat: 12.9516, lon: 80.1462}
+- {id: egmore, name: Egmore, lat: 13.0732, lon: 80.2609}
+- {id: airport, name: Chennai Airport (Meenambakkam), lat: 12.9941, lon: 80.1709}
+- {id: guduvanchery, name: Guduvanchery, lat: 12.8440, lon: 80.0600}
+- {id: guindy, name: Guindy, lat: 13.0067, lon: 80.2206}
+- {id: kelambakkam, name: Kelambakkam, lat: 12.7870, lon: 80.2200}
+- {id: kilpauk, name: Kilpauk, lat: 13.0836, lon: 80.2420}
+- {id: kodambakkam, name: Kodambakkam, lat: 13.0521, lon: 80.2255}
+- {id: kotturpuram, name: Kotturpuram, lat: 13.0186, lon: 80.2400}
+- {id: koyambedu, name: Koyambedu, lat: 13.0694, lon: 80.1948}
+- {id: madipakkam, name: Madipakkam, lat: 12.9650, lon: 80.1980}
+- {id: manapakkam, name: Manapakkam, lat: 13.0200, lon: 80.1700}
+- {id: marina, name: Marina Beach, lat: 13.0500, lon: 80.2824}
+- {id: medavakkam, name: Medavakkam, lat: 12.9200, lon: 80.1920}
+- {id: mogappair, name: Mogappair, lat: 13.0850, lon: 80.1740}
+- {id: mylapore, name: Mylapore, lat: 13.0368, lon: 80.2676}
+- {id: navalur, name: Navalur, lat: 12.8446, lon: 80.2263}
+- {id: neelankarai, name: Neelankarai (ECR), lat: 12.9500, lon: 80.2560}
+- {id: nungambakkam, name: Nungambakkam, lat: 13.0569, lon: 80.2425}
+- {id: pallavaram, name: Pallavaram, lat: 12.9675, lon: 80.1491}
+- {id: pallikaranai, name: Pallikaranai, lat: 12.9340, lon: 80.2150}
+- {id: perambur, name: Perambur, lat: 13.1186, lon: 80.2332}
+- {id: perungalathur, name: Perungalathur, lat: 12.9060, lon: 80.0900}
+- {id: perungudi, name: Perungudi, lat: 12.9650, lon: 80.2461}
+- {id: poonamallee, name: Poonamallee, lat: 13.0470, lon: 80.0940}
+- {id: porur, name: Porur, lat: 13.0382, lon: 80.1565}
+- {id: ramapuram, name: Ramapuram, lat: 13.0300, lon: 80.1850}
+- {id: royapettah, name: Royapettah, lat: 13.0530, lon: 80.2640}
+- {id: saidapet, name: Saidapet, lat: 13.0213, lon: 80.2231}
+- {id: sholinganallur, name: Sholinganallur, lat: 12.9010, lon: 80.2279}
+- {id: siruseri, name: Siruseri, lat: 12.8350, lon: 80.2200}
+- {id: st-thomas-mount, name: St. Thomas Mount, lat: 13.0000, lon: 80.1990}
+- {id: t-nagar, name: T. Nagar, lat: 13.0418, lon: 80.2341}
+- {id: tambaram, name: Tambaram, lat: 12.9249, lon: 80.1000}
+- {id: taramani, name: Taramani / Tidel Park, lat: 12.9863, lon: 80.2416}
+- {id: teynampet, name: Teynampet, lat: 13.0405, lon: 80.2500}
+- {id: thirumangalam, name: Thirumangalam, lat: 13.0860, lon: 80.2000}
+- {id: thiruvanmiyur, name: Thiruvanmiyur, lat: 12.9830, lon: 80.2594}
+- {id: thoraipakkam, name: Thoraipakkam, lat: 12.9400, lon: 80.2360}
+- {id: tondiarpet, name: Tondiarpet, lat: 13.1250, lon: 80.2880}
+- {id: triplicane, name: Triplicane, lat: 13.0583, lon: 80.2761}
+- {id: vadapalani, name: Vadapalani, lat: 13.0500, lon: 80.2121}
+- {id: valasaravakkam, name: Valasaravakkam, lat: 13.0420, lon: 80.1730}
+- {id: velachery, name: Velachery, lat: 12.9815, lon: 80.2180}
+- {id: vyasarpadi, name: Vyasarpadi, lat: 13.1170, lon: 80.2570}
+- {id: washermanpet, name: Washermanpet, lat: 13.1070, lon: 80.2890}
