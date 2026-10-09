@@ -37,4 +37,44 @@ ev:
   range_km:
     bike_scooter: {min: 20, max: 250}
     car: {min: 100, max: 800}
+# city boxes, areas, holidays and fuel prices live in cities.yaml
+# Tunable engine values (PRD sections 6.1, 6.1a, 6.1b). Learned over time; never hardcode in code.
+vehicle_congestion_multiplier:
+  car: 1.0
+  bike: 0.8
+  scooter: 0.85
+speed_input_kmh: {min: 5, max: 120}
+estimate:
+  base_spread: 0.12            # P80 = P50 * (1 + spread)
+  spread_per_congestion: 0.15  # added per 1.0 of (traffic/free-flow - 1)
+  spread_rain: 0.5             # multiplies the rain slowdown share
+  degraded_spread_multiplier: 1.5
+  rain_per_mm: 0.04            # slowdown share per mm/h of rain
+  rain_cap: 0.25
+  holiday_delay_factor: 0.6    # share of normal traffic delay left on a holiday
+  speed_factor_clamp: [0.6, 1.6]
+  slot_step_min: 30
+  max_window_hours: 6
+rain_levels: {light: 0.1, moderate: 2.5, heavy: 7.5}  # mm/hour thresholds for the umbrella icon
+fuel:
+  congestion_mileage_penalty: 0.25  # mileage / (1 + k * (ratio - 1)) in stop-and-go
+  round_to_inr: 5
+  stale_days: 30
+mileage_kmpl:
+  bike_scooter: {min: 15, max: 100}
+  car: {min: 4, max: 35}
+ev:
+  real_world_factor: 0.8
+  safety_buffer_percent: 15
+  safety_buffer_km: 20
+  congestion_relief: 0.03     # EVs lose a little less range in slow traffic (regen)
+  congestion_relief_floor: 0.9
+  rain_per_mm: 0.02
+  rain_cap: 0.1
+  heat_car_above_c: 35        # AC load, cars only
+  heat_car_factor: 0.1
+  worst_case_rain_multiplier: 1.5
+  range_km:
+    bike_scooter: {min: 20, max: 250}
+    car: {min: 100, max: 800}
 bengaluru_bbox: {lat: [12.7, 13.3], lon: [77.3, 77.9]}
