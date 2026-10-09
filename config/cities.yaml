@@ -1,0 +1,14 @@
+# One entry per supported city. The area list, holidays and fuel prices each live in their own file.
+# bbox is the box a pin must fall inside; it is also the limit the website's map is locked to.
+bengaluru:
+  name: Bengaluru
+  bbox: {lat: [12.7, 13.3], lon: [77.3, 77.9]}
+  areas: areas.yaml
+  holidays: holidays.yaml
+  fuel: fuel_prices.yaml
+chennai:
+  name: Chennai
+  bbox: {lat: [12.7, 13.3], lon: [79.9, 80.4]}
+  areas: chennai_areas.yaml
+  holidays: chennai_holidays.yaml
+  fuel: chennai_fuel_prices.yaml
