@@ -1,0 +1,41 @@
+# Curated Bengaluru areas for Guest/Free tiers. Coordinates are approximate area centres.
+- {id: whitefield, name: Whitefield, lat: 12.9698, lon: 77.7500}
+- {id: itpl, name: ITPL / Tech Park, lat: 12.9857, lon: 77.7370}
+- {id: kadugodi, name: Kadugodi, lat: 12.9981, lon: 77.7615}
+- {id: hope-farm, name: Hope Farm, lat: 12.9889, lon: 77.7571}
+- {id: varthur, name: Varthur, lat: 12.9390, lon: 77.7410}
+- {id: brookefield, name: Brookefield, lat: 12.9660, lon: 77.7160}
+- {id: kundalahalli, name: Kundalahalli, lat: 12.9650, lon: 77.7100}
+- {id: marathahalli, name: Marathahalli, lat: 12.9591, lon: 77.6974}
+- {id: mahadevapura, name: Mahadevapura, lat: 12.9910, lon: 77.6920}
+- {id: kr-puram, name: KR Puram, lat: 13.0070, lon: 77.6960}
+- {id: bellandur, name: Bellandur, lat: 12.9304, lon: 77.6784}
+- {id: sarjapur-road, name: Sarjapur Road, lat: 12.9100, lon: 77.6850}
+- {id: hsr-layout, name: HSR Layout, lat: 12.9116, lon: 77.6389}
+- {id: koramangala, name: Koramangala, lat: 12.9352, lon: 77.6245}
+- {id: indiranagar, name: Indiranagar, lat: 12.9784, lon: 77.6408}
+- {id: domlur, name: Domlur, lat: 12.9610, lon: 77.6387}
+- {id: cv-raman-nagar, name: CV Raman Nagar, lat: 12.9850, lon: 77.6640}
+- {id: mg-road, name: MG Road, lat: 12.9757, lon: 77.6068}
+- {id: majestic, name: Majestic, lat: 12.9767, lon: 77.5713}
+- {id: silk-board, name: Silk Board, lat: 12.9177, lon: 77.6233}
+- {id: btm-layout, name: BTM Layout, lat: 12.9166, lon: 77.6101}
+- {id: jayanagar, name: Jayanagar, lat: 12.9250, lon: 77.5938}
+- {id: jp-nagar, name: JP Nagar, lat: 12.9063, lon: 77.5857}
+- {id: banashankari, name: Banashankari, lat: 12.9255, lon: 77.5468}
+- {id: basavanagudi, name: Basavanagudi, lat: 12.9430, lon: 77.5740}
+- {id: bannerghatta-road, name: Bannerghatta Road, lat: 12.8900, lon: 77.5970}
+- {id: electronic-city, name: Electronic City, lat: 12.8452, lon: 77.6602}
+- {id: kengeri, name: Kengeri, lat: 12.9177, lon: 77.4830}
+- {id: vijayanagar, name: Vijayanagar, lat: 12.9719, lon: 77.5300}
+- {id: rajajinagar, name: Rajajinagar, lat: 12.9910, lon: 77.5520}
+- {id: malleshwaram, name: Malleshwaram, lat: 13.0035, lon: 77.5710}
+- {id: yeshwanthpur, name: Yeshwanthpur, lat: 13.0285, lon: 77.5400}
+- {id: peenya, name: Peenya, lat: 13.0285, lon: 77.5197}
+- {id: hebbal, name: Hebbal, lat: 13.0358, lon: 77.5970}
+- {id: manyata-tech-park, name: Manyata Tech Park, lat: 13.0475, lon: 77.6209}
+- {id: hennur, name: Hennur, lat: 13.0400, lon: 77.6400}
+- {id: banaswadi, name: Banaswadi, lat: 13.0100, lon: 77.6500}
+- {id: ramamurthy-nagar, name: Ramamurthy Nagar, lat: 13.0170, lon: 77.6800}
+- {id: yelahanka, name: Yelahanka, lat: 13.1007, lon: 77.5963}
+- {id: airport, name: Kempegowda Airport, lat: 13.1989, lon: 77.7068}
