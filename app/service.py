@@ -17,8 +17,8 @@ from app.schemas import EstimateRequest, Place
 
 IST = timezone(timedelta(hours=5, minutes=30))
 DISCLAIMER = (
-    "Trafixcast shows AI-generated estimates based on historical patterns, schedules, and reported "
-    "data. Actual travel time may vary. Do not rely on this for time-critical travel."
+    "Trafixcast shows estimates based on predicted traffic, weather forecasts, public holidays and your "
+    "vehicle. Actual travel time may vary. Do not rely on this for time-critical travel."
 )
 FUEL_NOTE = "Fuel cost is an estimate based on the mileage and fuel price you provide."
 EV_NOTE = ("EV range usage is an estimate based on the range you provide. Real range varies with "
