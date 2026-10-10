@@ -1,4 +1,5 @@
 import math
+from datetime import date
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -69,6 +70,7 @@ class EstimateRequest(VehicleInput):
     weekdays_only: bool = False  # next 5 Mon-Fri days instead of the next 7 calendar days
     window_start_hour: int = Field(ge=0, le=23)  # required: the departure window drives every slot
     window_end_hour: int = Field(ge=1, le=24)
+    only_date: date | None = None  # look at just this one day (within the next 7) instead of the whole week
 
     @model_validator(mode="after")
     def _city_pins(self):
