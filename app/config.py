@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     # Past this many lookups a day, estimates fall back to a clearly-flagged rough figure instead of failing.
     daily_route_budget: int = 2000
     cors_origins: str = "http://localhost:5173"  # the website's address(es), comma-separated
+    gemini_api_key: str = ""  # Google AI Studio key; enables the trip assistant, without it /v1/chat answers 503
+    chat_model: str = "gemini-3.5-flash-lite"  # small and cheap; the assistant only picks a tool and words a short reply
+    daily_chat_budget: int = 300  # assistant messages per day for the whole site, so a flood cannot run up the bill
     trust_forwarded_for: bool = False  # true only behind Cloud Run or a similar proxy; see app/limits.py
 
 
