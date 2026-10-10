@@ -83,6 +83,12 @@ def _route(providers, o: Point, d: Point, when: datetime):
 def _slots(req: EstimateRequest, now: datetime) -> list[datetime]:
     e = get_engine_config()["estimate"]
     start, end = req.window_start_hour, req.window_end_hour
+    if req.only_date:  # one day: a third of the route lookups of a week, and the chat only needs that day
+        offset = (req.only_date - now.date()).days
+        if not 0 <= offset <= 6:
+            raise HTTPException(422, "I can only look up to 7 days ahead.")
+        base = (now + timedelta(days=offset)).replace(hour=0, minute=0, second=0, microsecond=0)
+        return [base + timedelta(hours=start, minutes=i * e["slot_step_min"]) for i in range((end - start) * 60 // e["slot_step_min"])]
     out, shown, offset = [], 0, 0
     while shown < (5 if req.weekdays_only else 7):
         base = (now + timedelta(days=offset)).replace(hour=0, minute=0, second=0, microsecond=0)
