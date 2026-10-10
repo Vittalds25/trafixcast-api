@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 
-from app import links
+from app import chat, links
 from app.config import get_city
 from app.limits import limiter
 from app.providers import get_providers
@@ -28,6 +28,12 @@ def list_areas(city: str = Query("bengaluru", max_length=20)):
 @limiter.limit("6/minute;60/hour")  # each uncached estimate costs real traffic-provider lookups
 def estimate(request: Request, body: EstimateRequest, providers=Depends(get_providers)):
     return build_estimate(body, providers)
+
+
+@router.post("/chat")
+@limiter.limit("8/minute;60/hour")  # each message is a paid model call
+def chat_message(request: Request, body: chat.ChatRequest, providers=Depends(get_providers)):
+    return chat.reply(body, providers)
 
 
 @router.get("/locate-link")
