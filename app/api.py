@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 
-from app import chat, links
+from app import chat, links, places
 from app.config import get_city
 from app.limits import limiter
 from app.providers import get_providers
@@ -44,5 +44,15 @@ def locate_link(request: Request, link: str = Query(min_length=3, max_length=500
         return links.resolve(link, _city(city))
     except links.LinkError as e:
         raise HTTPException(422, str(e)) from None
+    except ConnectionError as e:
+        raise HTTPException(503, str(e)) from None
+
+
+@router.get("/search-place")
+@limiter.limit("30/minute;300/hour")
+def search_place(request: Request, q: str = Query(min_length=2, max_length=100), city: str = Query("bengaluru", max_length=20)):
+    """Exact-spot suggestions for the From and To boxes (map search, tidied up by the AI when needed)."""
+    try:
+        return places.search(q, _city(city))
     except ConnectionError as e:
         raise HTTPException(503, str(e)) from None
