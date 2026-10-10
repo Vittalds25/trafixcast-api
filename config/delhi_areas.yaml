@@ -1,0 +1,38 @@
+# Curated Delhi NCR areas (Delhi, Gurugram, Noida, Ghaziabad, Faridabad). Coordinates are approximate area centres.
+- {id: anand-vihar, name: Anand Vihar, lat: 28.6469, lon: 77.3160}
+- {id: azadpur, name: Azadpur, lat: 28.7070, lon: 77.1750}
+- {id: chandni-chowk, name: Old Delhi / Chandni Chowk, lat: 28.6506, lon: 77.2303}
+- {id: connaught-place, name: Connaught Place, lat: 28.6315, lon: 77.2167}
+- {id: dwarka, name: Dwarka, lat: 28.5921, lon: 77.0460}
+- {id: faridabad, name: Faridabad, lat: 28.4089, lon: 77.3178}
+- {id: ghaziabad-indirapuram, name: Indirapuram (Ghaziabad), lat: 28.6460, lon: 77.3690}
+- {id: golf-course-road, name: Golf Course Road (Gurugram), lat: 28.4430, lon: 77.1010}
+- {id: greater-kailash, name: Greater Kailash, lat: 28.5480, lon: 77.2380}
+- {id: greater-noida, name: Greater Noida, lat: 28.4744, lon: 77.5040}
+- {id: green-park, name: Green Park, lat: 28.5590, lon: 77.2060}
+- {id: gurugram-cyber-hub, name: Cyber Hub (Gurugram), lat: 28.4950, lon: 77.0890}
+- {id: gurugram-mg-road, name: MG Road (Gurugram), lat: 28.4800, lon: 77.0800}
+- {id: gurugram-sohna-road, name: Sohna Road (Gurugram), lat: 28.4120, lon: 77.0450}
+- {id: hauz-khas, name: Hauz Khas, lat: 28.5494, lon: 77.2001}
+- {id: india-gate, name: India Gate, lat: 28.6129, lon: 77.2295}
+- {id: janakpuri, name: Janakpuri, lat: 28.6219, lon: 77.0878}
+- {id: kashmere-gate, name: Kashmere Gate ISBT, lat: 28.6670, lon: 77.2280}
+- {id: karol-bagh, name: Karol Bagh, lat: 28.6519, lon: 77.1905}
+- {id: laxmi-nagar, name: Laxmi Nagar, lat: 28.6300, lon: 77.2770}
+- {id: lajpat-nagar, name: Lajpat Nagar, lat: 28.5677, lon: 77.2433}
+- {id: mayur-vihar, name: Mayur Vihar, lat: 28.6090, lon: 77.2970}
+- {id: najafgarh, name: Najafgarh, lat: 28.6090, lon: 76.9790}
+- {id: nehru-place, name: Nehru Place, lat: 28.5491, lon: 77.2518}
+- {id: new-delhi-station, name: New Delhi Railway Station, lat: 28.6428, lon: 77.2194}
+- {id: nizamuddin, name: Nizamuddin, lat: 28.5880, lon: 77.2510}
+- {id: noida-city-centre, name: Noida City Centre, lat: 28.5748, lon: 77.3560}
+- {id: noida-sector-62, name: Noida Sector 62, lat: 28.6270, lon: 77.3730}
+- {id: okhla, name: Okhla, lat: 28.5340, lon: 77.2750}
+- {id: pitampura, name: Pitampura, lat: 28.7000, lon: 77.1320}
+- {id: preet-vihar, name: Preet Vihar, lat: 28.6410, lon: 77.2940}
+- {id: rajouri-garden, name: Rajouri Garden, lat: 28.6492, lon: 77.1219}
+- {id: rohini, name: Rohini, lat: 28.7400, lon: 77.1150}
+- {id: saket, name: Saket, lat: 28.5245, lon: 77.2066}
+- {id: vasant-kunj, name: Vasant Kunj, lat: 28.5200, lon: 77.1590}
+- {id: vasant-vihar, name: Vasant Vihar, lat: 28.5590, lon: 77.1590}
+- {id: airport, name: Indira Gandhi International Airport (T3), lat: 28.5562, lon: 77.1000}

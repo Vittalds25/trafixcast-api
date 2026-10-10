@@ -1,0 +1,36 @@
+# Curated Mumbai (MMR) areas. Coordinates are approximate area centres.
+- {id: andheri-east, name: Andheri East, lat: 19.1136, lon: 72.8697}
+- {id: andheri-west, name: Andheri West, lat: 19.1364, lon: 72.8296}
+- {id: bandra, name: Bandra, lat: 19.0596, lon: 72.8295}
+- {id: bandra-kurla-complex, name: Bandra Kurla Complex (BKC), lat: 19.0680, lon: 72.8700}
+- {id: bhandup, name: Bhandup, lat: 19.1440, lon: 72.9370}
+- {id: borivali, name: Borivali, lat: 19.2307, lon: 72.8567}
+- {id: chembur, name: Chembur, lat: 19.0622, lon: 72.8975}
+- {id: churchgate, name: Churchgate, lat: 18.9322, lon: 72.8264}
+- {id: colaba, name: Colaba, lat: 18.9067, lon: 72.8147}
+- {id: cst-fort, name: CST / Fort, lat: 18.9398, lon: 72.8355}
+- {id: dadar, name: Dadar, lat: 19.0178, lon: 72.8478}
+- {id: dahisar, name: Dahisar, lat: 19.2500, lon: 72.8590}
+- {id: ghatkopar, name: Ghatkopar, lat: 19.0860, lon: 72.9080}
+- {id: goregaon, name: Goregaon, lat: 19.1663, lon: 72.8526}
+- {id: juhu, name: Juhu, lat: 19.1075, lon: 72.8263}
+- {id: kandivali, name: Kandivali, lat: 19.2041, lon: 72.8520}
+- {id: kurla, name: Kurla, lat: 19.0728, lon: 72.8826}
+- {id: lower-parel, name: Lower Parel, lat: 18.9930, lon: 72.8300}
+- {id: mahalaxmi, name: Mahalaxmi, lat: 18.9830, lon: 72.8240}
+- {id: malad, name: Malad, lat: 19.1874, lon: 72.8484}
+- {id: matunga, name: Matunga, lat: 19.0270, lon: 72.8570}
+- {id: mira-road, name: Mira Road, lat: 19.2813, lon: 72.8561}
+- {id: mulund, name: Mulund, lat: 19.1726, lon: 72.9560}
+- {id: nariman-point, name: Nariman Point, lat: 18.9256, lon: 72.8242}
+- {id: navi-mumbai-belapur, name: Navi Mumbai (Belapur), lat: 19.0230, lon: 73.0390}
+- {id: panvel, name: Panvel, lat: 18.9894, lon: 73.1175}
+- {id: powai, name: Powai, lat: 19.1176, lon: 72.9060}
+- {id: santacruz, name: Santacruz, lat: 19.0810, lon: 72.8410}
+- {id: sion, name: Sion, lat: 19.0390, lon: 72.8619}
+- {id: thane, name: Thane, lat: 19.2183, lon: 72.9781}
+- {id: vashi, name: Vashi, lat: 19.0770, lon: 72.9986}
+- {id: versova, name: Versova, lat: 19.1310, lon: 72.8140}
+- {id: vikhroli, name: Vikhroli, lat: 19.1100, lon: 72.9250}
+- {id: worli, name: Worli, lat: 19.0176, lon: 72.8175}
+- {id: airport, name: Chhatrapati Shivaji Maharaj International Airport (T2), lat: 19.0896, lon: 72.8656}

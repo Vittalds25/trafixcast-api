@@ -12,3 +12,27 @@ chennai:
   areas: chennai_areas.yaml
   holidays: chennai_holidays.yaml
   fuel: chennai_fuel_prices.yaml
+hyderabad:
+  name: Hyderabad
+  bbox: {lat: [17.2, 17.7], lon: [78.2, 78.7]}
+  areas: hyderabad_areas.yaml
+  holidays: hyderabad_holidays.yaml
+  fuel: hyderabad_fuel_prices.yaml
+delhi:
+  name: Delhi NCR
+  bbox: {lat: [28.3, 28.9], lon: [76.8, 77.6]}
+  areas: delhi_areas.yaml
+  holidays: delhi_holidays.yaml
+  fuel: delhi_fuel_prices.yaml
+mumbai:
+  name: Mumbai
+  bbox: {lat: [18.85, 19.35], lon: [72.75, 73.15]}
+  areas: mumbai_areas.yaml
+  holidays: mumbai_holidays.yaml
+  fuel: mumbai_fuel_prices.yaml
+pune:
+  name: Pune
+  bbox: {lat: [18.35, 18.75], lon: [73.6, 74.0]}
+  areas: pune_areas.yaml
+  holidays: pune_holidays.yaml
+  fuel: pune_fuel_prices.yaml

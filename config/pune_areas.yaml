@@ -1,0 +1,29 @@
+# Curated Pune areas (including Pimpri-Chinchwad). Coordinates are approximate area centres.
+- {id: aundh, name: Aundh, lat: 18.5580, lon: 73.8075}
+- {id: balewadi, name: Balewadi, lat: 18.5780, lon: 73.7790}
+- {id: baner, name: Baner, lat: 18.5590, lon: 73.7868}
+- {id: bibwewadi, name: Bibwewadi, lat: 18.4690, lon: 73.8610}
+- {id: camp, name: Camp (MG Road), lat: 18.5136, lon: 73.8808}
+- {id: deccan, name: Deccan Gymkhana, lat: 18.5167, lon: 73.8410}
+- {id: hadapsar, name: Hadapsar, lat: 18.5089, lon: 73.9259}
+- {id: hinjewadi, name: Hinjewadi, lat: 18.5912, lon: 73.7380}
+- {id: karve-nagar, name: Karve Nagar, lat: 18.4896, lon: 73.8170}
+- {id: katraj, name: Katraj, lat: 18.4575, lon: 73.8650}
+- {id: kalyani-nagar, name: Kalyani Nagar, lat: 18.5463, lon: 73.9033}
+- {id: kharadi, name: Kharadi, lat: 18.5515, lon: 73.9477}
+- {id: koregaon-park, name: Koregaon Park, lat: 18.5362, lon: 73.8939}
+- {id: kothrud, name: Kothrud, lat: 18.5074, lon: 73.8077}
+- {id: nibm, name: NIBM Road, lat: 18.4720, lon: 73.8990}
+- {id: pashan, name: Pashan, lat: 18.5380, lon: 73.7900}
+- {id: pimple-saudagar, name: Pimple Saudagar, lat: 18.6000, lon: 73.7960}
+- {id: pimpri-chinchwad, name: Pimpri-Chinchwad, lat: 18.6298, lon: 73.8007}
+- {id: pune-station, name: Pune Railway Station, lat: 18.5286, lon: 73.8744}
+- {id: shivajinagar, name: Shivajinagar, lat: 18.5308, lon: 73.8474}
+- {id: sinhagad-road, name: Sinhagad Road, lat: 18.4800, lon: 73.8200}
+- {id: swargate, name: Swargate, lat: 18.5018, lon: 73.8636}
+- {id: viman-nagar, name: Viman Nagar, lat: 18.5679, lon: 73.9143}
+- {id: wagholi, name: Wagholi, lat: 18.5800, lon: 73.9800}
+- {id: wakad, name: Wakad, lat: 18.5974, lon: 73.7600}
+- {id: wanowrie, name: Wanowrie, lat: 18.4896, lon: 73.8960}
+- {id: yerwada, name: Yerwada, lat: 18.5530, lon: 73.8870}
+- {id: airport, name: Pune Airport (Lohegaon), lat: 18.5793, lon: 73.9089}

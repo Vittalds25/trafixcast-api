@@ -1,0 +1,6 @@
+# Delhi NCR fuel prices, INR per litre (CNG: per kg). PLACEHOLDER VALUES: update from a real source.
+# The app labels them with as_of and flags them stale after engine.yaml fuel.stale_days.
+as_of: 2025-01-01
+petrol: 94.7
+diesel: 87.6
+cng: 76.9

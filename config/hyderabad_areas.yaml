@@ -1,0 +1,36 @@
+# Curated Hyderabad areas. Coordinates are approximate area centres.
+- {id: abids, name: Abids, lat: 17.3920, lon: 78.4740}
+- {id: ameerpet, name: Ameerpet, lat: 17.4375, lon: 78.4483}
+- {id: attapur, name: Attapur, lat: 17.3680, lon: 78.4280}
+- {id: bachupally, name: Bachupally, lat: 17.5410, lon: 78.3610}
+- {id: banjara-hills, name: Banjara Hills, lat: 17.4156, lon: 78.4347}
+- {id: begumpet, name: Begumpet, lat: 17.4440, lon: 78.4676}
+- {id: charminar, name: Charminar, lat: 17.3616, lon: 78.4747}
+- {id: chandanagar, name: Chanda Nagar, lat: 17.4950, lon: 78.3250}
+- {id: dilsukhnagar, name: Dilsukhnagar, lat: 17.3688, lon: 78.5247}
+- {id: ecil, name: ECIL, lat: 17.4764, lon: 78.5712}
+- {id: financial-district, name: Financial District / Nanakramguda, lat: 17.4160, lon: 78.3400}
+- {id: gachibowli, name: Gachibowli, lat: 17.4401, lon: 78.3489}
+- {id: hitec-city, name: HITEC City, lat: 17.4435, lon: 78.3772}
+- {id: jubilee-hills, name: Jubilee Hills, lat: 17.4326, lon: 78.4071}
+- {id: kokapet, name: Kokapet, lat: 17.3948, lon: 78.3340}
+- {id: kompally, name: Kompally, lat: 17.5360, lon: 78.4870}
+- {id: kondapur, name: Kondapur, lat: 17.4690, lon: 78.3570}
+- {id: kukatpally, name: Kukatpally, lat: 17.4948, lon: 78.3996}
+- {id: lakdikapul, name: Lakdikapul, lat: 17.4040, lon: 78.4630}
+- {id: lb-nagar, name: LB Nagar, lat: 17.3457, lon: 78.5522}
+- {id: madhapur, name: Madhapur, lat: 17.4485, lon: 78.3908}
+- {id: madinaguda, name: Madinaguda, lat: 17.4939, lon: 78.3438}
+- {id: malkajgiri, name: Malkajgiri, lat: 17.4500, lon: 78.5300}
+- {id: manikonda, name: Manikonda, lat: 17.4010, lon: 78.3900}
+- {id: mehdipatnam, name: Mehdipatnam, lat: 17.3950, lon: 78.4390}
+- {id: miyapur, name: Miyapur, lat: 17.4968, lon: 78.3614}
+- {id: nagole, name: Nagole, lat: 17.3720, lon: 78.5600}
+- {id: nampally, name: Nampally, lat: 17.3918, lon: 78.4690}
+- {id: sainikpuri, name: Sainikpuri, lat: 17.4850, lon: 78.5470}
+- {id: secunderabad, name: Secunderabad, lat: 17.4399, lon: 78.4983}
+- {id: somajiguda, name: Somajiguda, lat: 17.4239, lon: 78.4577}
+- {id: tarnaka, name: Tarnaka, lat: 17.4290, lon: 78.5330}
+- {id: tolichowki, name: Tolichowki, lat: 17.4000, lon: 78.4100}
+- {id: uppal, name: Uppal, lat: 17.4058, lon: 78.5591}
+- {id: airport, name: Rajiv Gandhi International Airport (Shamshabad), lat: 17.2403, lon: 78.4294}

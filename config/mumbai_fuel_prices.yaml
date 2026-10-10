@@ -1,0 +1,6 @@
+# Mumbai fuel prices, INR per litre (CNG: per kg). PLACEHOLDER VALUES: update from a real source.
+# The app labels them with as_of and flags them stale after engine.yaml fuel.stale_days.
+as_of: 2025-01-01
+petrol: 103.5
+diesel: 90
+cng: 77
