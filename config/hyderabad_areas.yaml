@@ -34,3 +34,47 @@
 - {id: tolichowki, name: Tolichowki, lat: 17.4000, lon: 78.4100}
 - {id: uppal, name: Uppal, lat: 17.4058, lon: 78.5591}
 - {id: airport, name: Rajiv Gandhi International Airport (Shamshabad), lat: 17.2403, lon: 78.4294}
+
+# More areas from public neighbourhood lists (Wikipedia) and OpenStreetMap; centres are approximate.
+- {id: punjagutta-2, name: Punjagutta, lat: 17.4287, lon: 78.4519}
+- {id: sr-nagar-2, name: SR Nagar, lat: 17.4452, lon: 78.4449}
+- {id: khairtabad-2, name: Khairtabad, lat: 17.4178, lon: 78.4622}
+- {id: himayatnagar-2, name: Himayatnagar, lat: 17.4040, lon: 78.4882}
+- {id: koti-2, name: Koti, lat: 17.3847, lon: 78.4837}
+- {id: narsingi-2, name: Narsingi, lat: 17.3967, lon: 78.3717}
+- {id: kothaguda-2, name: Kothaguda, lat: 17.4587, lon: 78.3639}
+- {id: gowlidoddi-2, name: Gowlidoddi, lat: 17.4291, lon: 78.3262}
+- {id: hafeezpet-2, name: Hafeezpet, lat: 17.4834, lon: 78.3611}
+- {id: nizampet-2, name: Nizampet, lat: 17.4986, lon: 78.3797}
+- {id: pragathi-nagar-2, name: Pragathi Nagar, lat: 17.5200, lon: 78.3969}
+- {id: bowenpally-2, name: Bowenpally, lat: 17.4652, lon: 78.4729}
+- {id: alwal-2, name: Alwal, lat: 17.5022, lon: 78.5089}
+- {id: balanagar-2, name: Balanagar, lat: 17.4768, lon: 78.4220}
+- {id: jeedimetla-2, name: Jeedimetla, lat: 17.5197, lon: 78.4469}
+- {id: patancheru-2, name: Patancheru, lat: 17.5286, lon: 78.2674}
+- {id: bhel-township-ramachandrapuram-2, name: BHEL Township / Ramachandrapuram, lat: 17.5086, lon: 78.3019}
+- {id: shaikpet-2, name: Shaikpet, lat: 17.4058, lon: 78.4006}
+- {id: rajendranagar-2, name: Rajendranagar, lat: 17.3346, lon: 78.4087}
+- {id: habsiguda-2, name: Habsiguda, lat: 17.4155, lon: 78.5427}
+- {id: nacharam-2, name: Nacharam, lat: 17.4285, lon: 78.5528}
+- {id: malakpet-2, name: Malakpet, lat: 17.3737, lon: 78.4997}
+- {id: saroornagar-2, name: Saroornagar, lat: 17.3612, lon: 78.5387}
+- {id: vanasthalipuram-2, name: Vanasthalipuram, lat: 17.3303, lon: 78.5683}
+- {id: hayathnagar-2, name: Hayathnagar, lat: 17.3281, lon: 78.6045}
+- {id: kothapet-2, name: Kothapet, lat: 17.3733, lon: 78.5415}
+- {id: kapra-2, name: Kapra, lat: 17.4846, lon: 78.5610}
+- {id: kushaiguda-2, name: Kushaiguda, lat: 17.4825, lon: 78.5726}
+- {id: narayanguda-2, name: Narayanguda, lat: 17.3981, lon: 78.4885}
+- {id: tellapur-2, name: Tellapur, lat: 17.4503, lon: 78.3009}
+- {id: raidurg-2, name: Raidurg, lat: 17.4142, lon: 78.3907}
+- {id: yousufguda-2, name: Yousufguda, lat: 17.4387, lon: 78.4280}
+- {id: film-nagar-2, name: Film Nagar, lat: 17.4141, lon: 78.4105}
+- {id: masab-tank-2, name: Masab Tank, lat: 17.4030, lon: 78.4507}
+- {id: moosapet-2, name: Moosapet, lat: 17.4685, lon: 78.4207}
+- {id: kismatpur-2, name: Kismatpur, lat: 17.3316, lon: 78.4034}
+- {id: mallapur-2, name: Mallapur, lat: 17.4405, lon: 78.5789}
+- {id: chintal-2, name: Chintal, lat: 17.5022, lon: 78.4406}
+- {id: secunderabad-railway-station-2, name: Secunderabad Railway Station, lat: 17.4339, lon: 78.5020}
+- {id: afzalgunj-2, name: Afzalgunj, lat: 17.3735, lon: 78.4763}
+- {id: falaknuma-2, name: Falaknuma, lat: 17.3327, lon: 78.4752}
+- {id: lingampally-2, name: Lingampally, lat: 17.4882, lon: 78.3161}

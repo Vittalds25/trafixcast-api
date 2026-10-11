@@ -55,3 +55,42 @@
 - {id: velachery, name: Velachery, lat: 12.9815, lon: 80.2180}
 - {id: vyasarpadi, name: Vyasarpadi, lat: 13.1170, lon: 80.2570}
 - {id: washermanpet, name: Washermanpet, lat: 13.1070, lon: 80.2890}
+
+# More areas from public neighbourhood lists (Wikipedia) and OpenStreetMap; centres are approximate.
+- {id: alandur-2, name: Alandur, lat: 13.0043, lon: 80.2014}
+- {id: adambakkam-2, name: Adambakkam, lat: 12.9822, lon: 80.2091}
+- {id: nanganallur-2, name: Nanganallur, lat: 12.9801, lon: 80.1849}
+- {id: gopalapuram-2, name: Gopalapuram, lat: 13.0497, lon: 80.2582}
+- {id: chetpet-2, name: Chetpet, lat: 13.0717, lon: 80.2438}
+- {id: west-mambalam-2, name: West Mambalam, lat: 13.0436, lon: 80.2208}
+- {id: virugambakkam-2, name: Virugambakkam, lat: 13.0523, lon: 80.1917}
+- {id: saligramam-2, name: Saligramam, lat: 13.0570, lon: 80.2037}
+- {id: kk-nagar-2, name: KK Nagar, lat: 13.0387, lon: 80.2052}
+- {id: arumbakkam-2, name: Arumbakkam, lat: 13.0744, lon: 80.2081}
+- {id: maduravoyal-2, name: Maduravoyal, lat: 13.0606, lon: 80.1661}
+- {id: kolathur-2, name: Kolathur, lat: 13.1236, lon: 80.2129}
+- {id: villivakkam-2, name: Villivakkam, lat: 13.1041, lon: 80.2090}
+- {id: korattur-2, name: Korattur, lat: 13.1115, lon: 80.1846}
+- {id: padi-2, name: Padi, lat: 13.1036, lon: 80.1920}
+- {id: pammal-2, name: Pammal, lat: 13.0348, lon: 80.1995}
+- {id: selaiyur-2, name: Selaiyur, lat: 12.9223, lon: 80.1420}
+- {id: kovilambakkam-2, name: Kovilambakkam, lat: 12.9409, lon: 80.2053}
+- {id: injambakkam-2, name: Injambakkam, lat: 12.9189, lon: 80.2513}
+- {id: palavakkam-2, name: Palavakkam, lat: 12.9600, lon: 80.2560}
+- {id: kottivakkam-2, name: Kottivakkam, lat: 12.9705, lon: 80.2615}
+- {id: nolambur-2, name: Nolambur, lat: 13.0747, lon: 80.1682}
+- {id: thiruverkadu-2, name: Thiruverkadu, lat: 13.0614, lon: 80.1397}
+- {id: madhavaram-2, name: Madhavaram, lat: 13.1414, lon: 80.2325}
+- {id: george-town-2, name: George Town, lat: 13.0921, lon: 80.2822}
+- {id: park-town-2, name: Park Town, lat: 13.0863, lon: 80.2727}
+- {id: sriperumbudur-2, name: Sriperumbudur, lat: 12.9785, lon: 79.9622}
+- {id: oragadam-2, name: Oragadam, lat: 13.1308, lon: 80.1533}
+- {id: thiruvottiyur-2, name: Thiruvottiyur, lat: 13.1566, lon: 80.3007}
+- {id: kolapakkam-2, name: Kolapakkam, lat: 13.0130, lon: 80.1568}
+- {id: ennore-2, name: Ennore, lat: 13.2258, lon: 80.3244}
+- {id: redhills-2, name: Redhills, lat: 13.1519, lon: 80.2043}
+- {id: puzhal-2, name: Puzhal, lat: 13.1591, lon: 80.2031}
+- {id: maraimalai-nagar-2, name: Maraimalai Nagar, lat: 13.0178, lon: 80.2250}
+- {id: padur-2, name: Padur, lat: 12.7983, lon: 80.2233}
+- {id: karapakkam-2, name: Karapakkam, lat: 12.9117, lon: 80.2277}
+- {id: kovalam-2, name: Kovalam, lat: 12.7855, lon: 80.2500}

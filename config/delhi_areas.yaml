@@ -36,3 +36,60 @@
 - {id: vasant-kunj, name: Vasant Kunj, lat: 28.5200, lon: 77.1590}
 - {id: vasant-vihar, name: Vasant Vihar, lat: 28.5590, lon: 77.1590}
 - {id: airport, name: Indira Gandhi International Airport (T3), lat: 28.5562, lon: 77.1000}
+
+# More areas from public neighbourhood lists (Wikipedia) and OpenStreetMap; centres are approximate.
+- {id: rajendra-place-2, name: Rajendra Place, lat: 28.6425, lon: 77.1783}
+- {id: paharganj-2, name: Paharganj, lat: 28.6415, lon: 77.2141}
+- {id: chanakyapuri-2, name: Chanakyapuri, lat: 28.5947, lon: 77.1885}
+- {id: khan-market-2, name: Khan Market, lat: 28.5995, lon: 77.2260}
+- {id: sarojini-nagar-2, name: Sarojini Nagar, lat: 28.5758, lon: 77.1981}
+- {id: naraina-2, name: Naraina, lat: 28.6265, lon: 77.1350}
+- {id: mahipalpur-2, name: Mahipalpur, lat: 28.5445, lon: 77.1279}
+- {id: dhaula-kuan-2, name: Dhaula Kuan, lat: 28.5919, lon: 77.1617}
+- {id: munirka-2, name: Munirka, lat: 28.5549, lon: 77.1711}
+- {id: malviya-nagar-2, name: Malviya Nagar, lat: 28.5339, lon: 77.2125}
+- {id: kalkaji-2, name: Kalkaji, lat: 28.5469, lon: 77.2588}
+- {id: south-extension-2, name: South Extension, lat: 28.5686, lon: 77.2206}
+- {id: chittaranjan-park-2, name: Chittaranjan Park, lat: 28.5377, lon: 77.2516}
+- {id: defence-colony-2, name: Defence Colony, lat: 28.5714, lon: 77.2330}
+- {id: jangpura-2, name: Jangpura, lat: 28.5830, lon: 77.2393}
+- {id: sarita-vihar-2, name: Sarita Vihar, lat: 28.5335, lon: 77.2935}
+- {id: badarpur-2, name: Badarpur, lat: 28.4933, lon: 77.3030}
+- {id: vikaspuri-2, name: Vikaspuri, lat: 28.6386, lon: 77.0731}
+- {id: paschim-vihar-2, name: Paschim Vihar, lat: 28.6696, lon: 77.0960}
+- {id: punjabi-bagh-2, name: Punjabi Bagh, lat: 28.6730, lon: 77.1461}
+- {id: tilak-nagar-2, name: Tilak Nagar, lat: 28.6365, lon: 77.0965}
+- {id: uttam-nagar-2, name: Uttam Nagar, lat: 28.6215, lon: 77.0611}
+- {id: kirti-nagar-2, name: Kirti Nagar, lat: 28.6545, lon: 77.1514}
+- {id: narela-2, name: Narela, lat: 28.8465, lon: 77.0857}
+- {id: civil-lines-2, name: Civil Lines, lat: 28.6807, lon: 77.2226}
+- {id: model-town-2, name: Model Town, lat: 28.7073, lon: 77.1885}
+- {id: mukherjee-nagar-2, name: Mukherjee Nagar, lat: 28.7126, lon: 77.2144}
+- {id: shahdara-2, name: Shahdara, lat: 28.6734, lon: 77.2899}
+- {id: vivek-vihar-2, name: Vivek Vihar, lat: 28.6692, lon: 77.3123}
+- {id: dilshad-garden-2, name: Dilshad Garden, lat: 28.6759, lon: 77.3214}
+- {id: krishna-nagar-2, name: Krishna Nagar, lat: 28.6578, lon: 77.2901}
+- {id: udyog-vihar-gurugram-2, name: Udyog Vihar (Gurugram), lat: 28.4917, lon: 77.0820}
+- {id: golf-course-extension-road-gurugram-2, name: Golf Course Extension Road (Gurugram), lat: 28.4077, lon: 77.0616}
+- {id: sector-29-gurugram-2, name: Sector 29 (Gurugram), lat: 28.4669, lon: 77.0671}
+- {id: sector-18-noida-2, name: Sector 18 (Noida), lat: 28.5705, lon: 77.3229}
+- {id: sector-125-noida-2, name: Sector 125 (Noida), lat: 28.5454, lon: 77.3298}
+- {id: sector-135-noida-2, name: Sector 135 (Noida), lat: 28.4980, lon: 77.4000}
+- {id: greater-noida-west-noida-extension-2, name: Greater Noida West (Noida Extension), lat: 28.5643, lon: 77.4739}
+- {id: vaishali-ghaziabad-2, name: Vaishali (Ghaziabad), lat: 28.6497, lon: 77.3396}
+- {id: kaushambi-ghaziabad-2, name: Kaushambi (Ghaziabad), lat: 28.6453, lon: 77.3243}
+- {id: raj-nagar-extension-ghaziabad-2, name: Raj Nagar Extension (Ghaziabad), lat: 28.6856, lon: 77.4003}
+- {id: sector-16-noida-2, name: Sector 16 (Noida), lat: 28.5779, lon: 77.3151}
+- {id: sector-49-gurugram-2, name: Sector 49 (Gurugram), lat: 28.4129, lon: 77.0498}
+- {id: dwarka-expressway-gurugram-2, name: Dwarka Expressway (Gurugram), lat: 28.4972, lon: 77.0041}
+- {id: pragati-maidan-bharat-mandapam-2, name: Pragati Maidan (Bharat Mandapam), lat: 28.6172, lon: 77.2435}
+- {id: mehrauli-2, name: Mehrauli, lat: 28.5218, lon: 77.1783}
+- {id: chhatarpur-2, name: Chhatarpur, lat: 28.5067, lon: 77.1750}
+- {id: ashok-vihar-2, name: Ashok Vihar, lat: 28.6885, lon: 77.1739}
+- {id: shalimar-bagh-2, name: Shalimar Bagh, lat: 28.7020, lon: 77.1654}
+- {id: mayapuri-2, name: Mayapuri, lat: 28.6372, lon: 77.1297}
+- {id: bawana-2, name: Bawana, lat: 28.7997, lon: 77.0329}
+- {id: alipur-2, name: Alipur, lat: 28.7973, lon: 77.1387}
+- {id: kapashera-2, name: Kapashera, lat: 28.5273, lon: 77.0823}
+- {id: vasundhara-enclave-2, name: Vasundhara Enclave, lat: 28.6017, lon: 77.3211}
+- {id: huda-city-centre-gurugram-2, name: HUDA City Centre (Gurugram), lat: 28.4593, lon: 77.0727}

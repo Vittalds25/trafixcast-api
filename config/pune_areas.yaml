@@ -27,3 +27,58 @@
 - {id: wanowrie, name: Wanowrie, lat: 18.4896, lon: 73.8960}
 - {id: yerwada, name: Yerwada, lat: 18.5530, lon: 73.8870}
 - {id: airport, name: Pune Airport (Lohegaon), lat: 18.5793, lon: 73.9089}
+
+# More areas from public neighbourhood lists (Wikipedia) and OpenStreetMap; centres are approximate.
+- {id: mundhwa-2, name: Mundhwa, lat: 18.5343, lon: 73.9298}
+- {id: kondhwa-2, name: Kondhwa, lat: 18.4780, lon: 73.8941}
+- {id: bavdhan-2, name: Bavdhan, lat: 18.5209, lon: 73.7781}
+- {id: warje-2, name: Warje, lat: 18.4820, lon: 73.8002}
+- {id: erandwane-2, name: Erandwane, lat: 18.5087, lon: 73.8318}
+- {id: sangamwadi-2, name: Sangamwadi, lat: 18.5378, lon: 73.8632}
+- {id: khadki-2, name: Khadki, lat: 18.5682, lon: 73.8508}
+- {id: bund-garden-2, name: Bund Garden, lat: 18.5406, lon: 73.8834}
+- {id: vishrantwadi-2, name: Vishrantwadi, lat: 18.5726, lon: 73.8782}
+- {id: dhanori-2, name: Dhanori, lat: 18.5907, lon: 73.8913}
+- {id: nagar-road-2, name: Nagar Road, lat: 18.5512, lon: 73.8951}
+- {id: manjri-2, name: Manjri, lat: 18.5007, lon: 73.9687}
+- {id: undri-2, name: Undri, lat: 18.4516, lon: 73.8928}
+- {id: pimple-gurav-2, name: Pimple Gurav, lat: 18.5875, lon: 73.8213}
+- {id: pimple-nilakh-2, name: Pimple Nilakh, lat: 18.5697, lon: 73.7940}
+- {id: sangvi-2, name: Sangvi, lat: 18.5741, lon: 73.8204}
+- {id: akurdi-2, name: Akurdi, lat: 18.6486, lon: 73.7647}
+- {id: nigdi-2, name: Nigdi, lat: 18.6598, lon: 73.7773}
+- {id: ravet-2, name: Ravet, lat: 18.6433, lon: 73.7451}
+- {id: tathawade-2, name: Tathawade, lat: 18.6154, lon: 73.7502}
+- {id: punawale-2, name: Punawale, lat: 18.6383, lon: 73.7462}
+- {id: chinchwad-2, name: Chinchwad, lat: 18.6404, lon: 73.7917}
+- {id: bhosari-2, name: Bhosari, lat: 18.6210, lon: 73.8501}
+- {id: moshi-2, name: Moshi, lat: 18.6523, lon: 73.8442}
+- {id: talawade-2, name: Talawade, lat: 18.6987, lon: 73.7908}
+- {id: sus-2, name: Sus, lat: 18.5537, lon: 73.7527}
+- {id: dhayari-2, name: Dhayari, lat: 18.4374, lon: 73.8190}
+- {id: narhe-2, name: Narhe, lat: 18.4536, lon: 73.8207}
+- {id: ambegaon-2, name: Ambegaon, lat: 18.4511, lon: 73.8376}
+- {id: market-yard-2, name: Market Yard, lat: 18.4878, lon: 73.8575}
+- {id: nanded-city-2, name: Nanded City, lat: 18.4599, lon: 73.7856}
+- {id: fergusson-college-road-2, name: Fergusson College Road, lat: 18.5241, lon: 73.8386}
+- {id: laxmi-road-2, name: Laxmi Road, lat: 18.5157, lon: 73.8699}
+- {id: sadashiv-peth-2, name: Sadashiv Peth, lat: 18.5108, lon: 73.8502}
+- {id: parvati-2, name: Parvati, lat: 18.4973, lon: 73.8469}
+- {id: sahakar-nagar-2, name: Sahakar Nagar, lat: 18.4901, lon: 73.8475}
+- {id: dhankawadi-2, name: Dhankawadi, lat: 18.4654, lon: 73.8501}
+- {id: yewalewadi-2, name: Yewalewadi, lat: 18.4358, lon: 73.8964}
+- {id: hadapsar-industrial-estate-2, name: Hadapsar Industrial Estate, lat: 18.5099, lon: 73.9160}
+- {id: eon-it-park-2, name: EON IT Park, lat: 18.5541, lon: 73.9516}
+- {id: pune-university-2, name: Pune University, lat: 18.5428, lon: 73.8255}
+- {id: ghorpadi-2, name: Ghorpadi, lat: 18.5268, lon: 73.9001}
+- {id: mohammadwadi-2, name: Mohammadwadi, lat: 18.4733, lon: 73.9238}
+- {id: talegaon-2, name: Talegaon, lat: 18.7351, lon: 73.6721}
+- {id: dehu-road-2, name: Dehu Road, lat: 18.6801, lon: 73.7343}
+- {id: wadgaon-sheri-2, name: Wadgaon Sheri, lat: 18.5490, lon: 73.9149}
+- {id: charholi-2, name: Charholi, lat: 18.6575, lon: 73.8983}
+- {id: kesnand-2, name: Kesnand, lat: 18.5807, lon: 73.9876}
+- {id: shikrapur-2, name: Shikrapur, lat: 18.7432, lon: 73.8905}
+- {id: mamurdi-2, name: Mamurdi, lat: 18.6852, lon: 73.7226}
+- {id: dapodi-2, name: Dapodi, lat: 18.5817, lon: 73.8327}
+- {id: kasarwadi-2, name: Kasarwadi, lat: 18.6081, lon: 73.8209}
+- {id: thergaon-2, name: Thergaon, lat: 18.6093, lon: 73.7729}

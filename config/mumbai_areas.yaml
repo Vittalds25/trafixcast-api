@@ -34,3 +34,58 @@
 - {id: vikhroli, name: Vikhroli, lat: 19.1100, lon: 72.9250}
 - {id: worli, name: Worli, lat: 19.0176, lon: 72.8175}
 - {id: airport, name: Chhatrapati Shivaji Maharaj International Airport (T2), lat: 19.0896, lon: 72.8656}
+
+# More areas from public neighbourhood lists (Wikipedia) and OpenStreetMap; centres are approximate.
+- {id: prabhadevi-2, name: Prabhadevi, lat: 19.0149, lon: 72.8280}
+- {id: mahim-2, name: Mahim, lat: 19.0423, lon: 72.8398}
+- {id: byculla-2, name: Byculla, lat: 18.9766, lon: 72.8328}
+- {id: mumbai-central-2, name: Mumbai Central, lat: 18.9696, lon: 72.8193}
+- {id: grant-road-2, name: Grant Road, lat: 18.9633, lon: 72.8158}
+- {id: marine-lines-2, name: Marine Lines, lat: 18.9458, lon: 72.8237}
+- {id: marine-drive-2, name: Marine Drive, lat: 18.9557, lon: 72.8127}
+- {id: malabar-hill-2, name: Malabar Hill, lat: 18.9582, lon: 72.8034}
+- {id: cuffe-parade-2, name: Cuffe Parade, lat: 18.9158, lon: 72.8189}
+- {id: wadala-2, name: Wadala, lat: 19.0269, lon: 72.8759}
+- {id: parel-2, name: Parel, lat: 18.9885, lon: 72.8394}
+- {id: lalbaug-2, name: Lalbaug, lat: 18.9914, lon: 72.8365}
+- {id: khar-2, name: Khar, lat: 19.0682, lon: 72.8400}
+- {id: vile-parle-2, name: Vile Parle, lat: 19.0999, lon: 72.8440}
+- {id: jogeshwari-2, name: Jogeshwari, lat: 19.1429, lon: 72.8552}
+- {id: oshiwara-2, name: Oshiwara, lat: 19.1502, lon: 72.8342}
+- {id: kalina-2, name: Kalina, lat: 19.0793, lon: 72.8613}
+- {id: chandivali-2, name: Chandivali, lat: 19.1091, lon: 72.8946}
+- {id: vidyavihar-2, name: Vidyavihar, lat: 19.0795, lon: 72.8971}
+- {id: kanjurmarg-2, name: Kanjurmarg, lat: 19.1241, lon: 72.9386}
+- {id: govandi-2, name: Govandi, lat: 19.0554, lon: 72.9151}
+- {id: mankhurd-2, name: Mankhurd, lat: 19.0482, lon: 72.9317}
+- {id: trombay-2, name: Trombay, lat: 19.0337, lon: 72.9504}
+- {id: deonar-2, name: Deonar, lat: 19.0476, lon: 72.9052}
+- {id: sewri-2, name: Sewri, lat: 18.9990, lon: 72.8607}
+- {id: dharavi-2, name: Dharavi, lat: 19.0445, lon: 72.8586}
+- {id: nerul-2, name: Nerul, lat: 19.0336, lon: 73.0182}
+- {id: seawoods-2, name: Seawoods, lat: 19.0217, lon: 73.0186}
+- {id: kharghar-2, name: Kharghar, lat: 19.0258, lon: 73.0592}
+- {id: airoli-2, name: Airoli, lat: 19.1585, lon: 72.9994}
+- {id: kopar-khairane-2, name: Kopar Khairane, lat: 19.1056, lon: 72.9989}
+- {id: ghansoli-2, name: Ghansoli, lat: 19.1164, lon: 73.0070}
+- {id: kolshet-2, name: Kolshet, lat: 19.2291, lon: 72.9837}
+- {id: rabale-2, name: Rabale, lat: 19.1366, lon: 73.0028}
+- {id: turbhe-2, name: Turbhe, lat: 19.0762, lon: 73.0177}
+- {id: juinagar-2, name: Juinagar, lat: 19.0559, lon: 73.0182}
+- {id: tardeo-2, name: Tardeo, lat: 18.9722, lon: 72.8203}
+- {id: kemps-corner-2, name: Kemps Corner, lat: 18.9638, lon: 72.8069}
+- {id: mazgaon-2, name: Mazgaon, lat: 18.9697, lon: 72.8406}
+- {id: lokhandwala-2, name: Lokhandwala, lat: 19.1431, lon: 72.8246}
+- {id: seepz-2, name: SEEPZ, lat: 19.1254, lon: 72.8752}
+- {id: saki-naka-2, name: Saki Naka, lat: 19.1082, lon: 72.8828}
+- {id: marol-2, name: Marol, lat: 19.1172, lon: 72.8823}
+- {id: andheri-midc-2, name: Andheri MIDC, lat: 19.1173, lon: 72.8742}
+- {id: charkop-2, name: Charkop, lat: 19.2141, lon: 72.8259}
+- {id: gorai-2, name: Gorai, lat: 19.2364, lon: 72.8187}
+- {id: ulwe-navi-mumbai-airport-2, name: Ulwe (Navi Mumbai Airport), lat: 18.9914, lon: 73.0657}
+- {id: taloja-2, name: Taloja, lat: 19.0618, lon: 73.0956}
+- {id: mumbra-2, name: Mumbra, lat: 19.1899, lon: 73.0231}
+- {id: diva-2, name: Diva, lat: 19.1888, lon: 73.0414}
+- {id: dombivli-2, name: Dombivli, lat: 19.2183, lon: 73.0868}
+- {id: kalyan-2, name: Kalyan, lat: 19.2403, lon: 73.1305}
+- {id: majiwada-thane-2, name: Majiwada (Thane), lat: 19.2043, lon: 72.9757}

@@ -39,3 +39,52 @@
 - {id: ramamurthy-nagar, name: Ramamurthy Nagar, lat: 13.0170, lon: 77.6800}
 - {id: yelahanka, name: Yelahanka, lat: 13.1007, lon: 77.5963}
 - {id: airport, name: Kempegowda Airport, lat: 13.1989, lon: 77.7068}
+
+# More areas from public neighbourhood lists (Wikipedia) and OpenStreetMap; centres are approximate.
+- {id: hoodi-2, name: Hoodi, lat: 12.9959, lon: 77.7193}
+- {id: kammanahalli-2, name: Kammanahalli, lat: 13.0148, lon: 77.6382}
+- {id: hbr-layout-2, name: HBR Layout, lat: 13.0320, lon: 77.6281}
+- {id: kalyan-nagar-2, name: Kalyan Nagar, lat: 13.0221, lon: 77.6403}
+- {id: horamavu-2, name: Horamavu, lat: 13.0273, lon: 77.6602}
+- {id: jalahalli-2, name: Jalahalli, lat: 13.0394, lon: 77.5197}
+- {id: vidyaranyapura-2, name: Vidyaranyapura, lat: 13.0766, lon: 77.5577}
+- {id: mathikere-2, name: Mathikere, lat: 13.0334, lon: 77.5582}
+- {id: sadashivanagar-2, name: Sadashivanagar, lat: 13.0110, lon: 77.5809}
+- {id: ulsoor-halasuru-2, name: Ulsoor (Halasuru), lat: 12.9779, lon: 77.6247}
+- {id: shivajinagar-2, name: Shivajinagar, lat: 12.9855, lon: 77.6055}
+- {id: richmond-town-2, name: Richmond Town, lat: 12.9635, lon: 77.6016}
+- {id: seshadripuram-2, name: Seshadripuram, lat: 12.9947, lon: 77.5747}
+- {id: madiwala-2, name: Madiwala, lat: 12.9219, lon: 77.6177}
+- {id: bommanahalli-2, name: Bommanahalli, lat: 12.9035, lon: 77.6230}
+- {id: bommasandra-2, name: Bommasandra, lat: 12.8345, lon: 77.6775}
+- {id: hulimavu-2, name: Hulimavu, lat: 12.8773, lon: 77.6028}
+- {id: begur-2, name: Begur, lat: 12.8634, lon: 77.6130}
+- {id: uttarahalli-2, name: Uttarahalli, lat: 12.9056, lon: 77.5455}
+- {id: padmanabhanagar-2, name: Padmanabhanagar, lat: 12.9181, lon: 77.5577}
+- {id: rajarajeshwari-nagar-2, name: Rajarajeshwari Nagar, lat: 12.9274, lon: 77.5155}
+- {id: nagarbhavi-2, name: Nagarbhavi, lat: 12.9512, lon: 77.5190}
+- {id: basaveshwaranagar-2, name: Basaveshwaranagar, lat: 12.9938, lon: 77.5391}
+- {id: kaggadasapura-2, name: Kaggadasapura, lat: 12.9812, lon: 77.6746}
+- {id: thanisandra-2, name: Thanisandra, lat: 13.0523, lon: 77.6316}
+- {id: sarjapura-2, name: Sarjapura, lat: 12.8601, lon: 77.7861}
+- {id: haralur-2, name: Haralur, lat: 12.9045, lon: 77.6654}
+- {id: carmelaram-2, name: Carmelaram, lat: 12.9112, lon: 77.7065}
+- {id: doddanekundi-2, name: Doddanekundi, lat: 12.9713, lon: 77.6965}
+- {id: kudlu-gate-2, name: Kudlu Gate, lat: 12.8899, lon: 77.6392}
+- {id: nayandahalli-2, name: Nayandahalli, lat: 12.9413, lon: 77.5212}
+- {id: mysore-road-2, name: Mysore Road, lat: 12.9467, lon: 77.5301}
+- {id: devanahalli-2, name: Devanahalli, lat: 13.2484, lon: 77.7134}
+- {id: hosur-road-2, name: Hosur Road, lat: 12.9003, lon: 77.6330}
+- {id: yelahanka-new-town-2, name: Yelahanka New Town, lat: 13.0978, lon: 77.5812}
+- {id: rt-nagar-2, name: RT Nagar, lat: 13.0227, lon: 77.5957}
+- {id: frazer-town-2, name: Frazer Town, lat: 12.9976, lon: 77.6137}
+- {id: sahakara-nagar-2, name: Sahakara Nagar, lat: 13.0622, lon: 77.5801}
+- {id: nagawara-2, name: Nagawara, lat: 13.0423, lon: 77.6249}
+- {id: mahalakshmi-layout-2, name: Mahalakshmi Layout, lat: 13.0113, lon: 77.5447}
+- {id: girinagar-2, name: Girinagar, lat: 12.9401, lon: 77.5445}
+- {id: gottigere-2, name: Gottigere, lat: 12.8565, lon: 77.5877}
+- {id: lakshmipura-kanakapura-road, name: Lakshmipura (Kanakapura Road), lat: 12.8333, lon: 77.5138}
+- {id: tatguni-thataguni, name: Tatguni (Thataguni), lat: 12.8434, lon: 77.5225}
+- {id: konanakunte, name: Konanakunte (Konankunte), lat: 12.8793, lon: 77.5698}
+- {id: talaghattapura, name: Talaghattapura (Talagattapura), lat: 12.8669, lon: 77.5344}
+- {id: udayapura, name: Udayapura, lat: 12.8289, lon: 77.5174}
