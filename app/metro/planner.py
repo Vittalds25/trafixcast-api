@@ -18,9 +18,9 @@ from app.service import IST, RAIN_ORDER, rain_level
 DISCLAIMER = "Estimates from past ridership and typical train frequency, not live."
 STATION_DISCLAIMER = "Estimates from past ridership, not live."
 ATTRIBUTION = "Ridership data: BMRCL via RTI, compiled by Vonter/bmrcl-ridership-hourly, ODbL"
-FARE_AS_OF = "Aug 2025"
-FARE_NOTE = ("Fare as of Aug 2025, after BMRCL's February 2025 revision (Rs 10 to Rs 90 by stops travelled). "
-             "A later increase may apply: check the price when you buy.")  # disclosed, never applied: no confirmed later revision
+FARE_AS_OF = "Feb 2025 tariff"
+FARE_NOTE = ("Fare by distance (Rs 10 to Rs 90) under BMRCL's February 2025 tariff, with no later revision reported. "
+             "It is approximate near a distance boundary: check the price when you buy.")  # a planned Feb 2026 rise was suspended; discounts not applied
 LEVELS =["low", "moderate", "high", "packed"]
 
 
