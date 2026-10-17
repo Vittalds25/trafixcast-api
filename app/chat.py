@@ -39,7 +39,7 @@ class ChatTurn(BaseModel):
 class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     city: str = Field(default="bengaluru", max_length=20)
-    mode: Literal["road", "metro"] = "road"  # metro: the Namma Metro assistant (app/metro/assistant.py)
+    mode: Literal["road", "metro", "compare"] = "road"  # metro and compare: the Namma Metro assistant (app/metro/assistant.py)
     messages: list[ChatTurn] = Field(min_length=1, max_length=MAX_TURNS)
 
     @model_validator(mode="after")
@@ -446,7 +446,7 @@ class _Answer:
 def _call(req: ChatRequest, now: datetime, followup: list | None = None) -> _Answer:
     s = get_settings()
     from app.metro import assistant  # imported here: the metro assistant imports this module
-    system, tools = (assistant.system(now), assistant.TOOLS) if req.mode == "metro" else (_system(req.city, now), TOOLS)
+    system, tools = ((assistant.system(now, req.mode), assistant.tools(req.mode)) if req.mode in ("metro", "compare") else (_system(req.city, now), TOOLS))
     transcript = "\n".join(f"[{t.role}] {t.content[:300] if t.role == 'assistant' else t.content}" for t in req.messages)
     body = {
         "systemInstruction": {"parts": [{"text": system}]},
@@ -484,15 +484,19 @@ def _worded(req: ChatRequest, now: datetime, first, call, facts: dict) -> str | 
     return text if text and _numbers(text) <= allowed else None
 
 
+def _now() -> datetime:
+    return datetime.now(IST)  # one place for the clock, so tests can freeze it
+
+
 def reply(req: ChatRequest, providers, now: datetime | None = None) -> dict:
     if not get_settings().gemini_api_key or not _within_budget():
         raise HTTPException(503, UNAVAILABLE)
-    now = now or datetime.now(IST)
+    now = now or _now()
     try:
         r = _call(req, now)
     except httpx.HTTPError:
         raise HTTPException(503, UNAVAILABLE) from None
-    if req.mode == "metro":
+    if req.mode in ("metro", "compare"):
         from app.metro import assistant
         return assistant.handle(req, r, providers, now)
     call = next((b for b in r.content if b.type == "tool_use"), None)

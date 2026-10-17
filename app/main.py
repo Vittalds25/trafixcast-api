@@ -10,6 +10,7 @@ from app.compare_api import router as compare_router
 from app.config import get_settings
 from app.limits import limiter
 from app.metro_api import router as metro_router
+from app import localplaces
 from app.metro_api import warm as metro_warm
 from app.preflight import enforce
 
@@ -21,6 +22,8 @@ async def lifespan(app: FastAPI):
         metro_warm()  # load the metro files and the areas table now, not on the first visitor's request
     except Exception:  # noqa: BLE001  the metro endpoints answer 503 on their own if the data is broken
         pass
+    for city in ("bengaluru", "chennai", "hyderabad", "delhi", "mumbai", "pune"):
+        localplaces._index(city)  # the place suggestions, parsed once now; a missing file is simply an empty list
     yield
 
 

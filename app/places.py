@@ -11,6 +11,7 @@ import time
 
 import httpx
 
+from app import localplaces
 from app.chat import _clean, _norm, _within_budget
 from app.config import get_city, get_settings
 from app.service import areas
@@ -100,7 +101,15 @@ def search(q: str, city: str) -> dict:
     if hit and hit[1] > time.time() and hit[0] is not None:
         return hit[0]
     name = get_city(city)["name"]
+    # the prebuilt OpenStreetMap index answers instantly; three or more good hits mean no live lookup is needed at all
+    local = localplaces.search(q, city, MAX_RESULTS, list(areas(city).values()))
+    if len(local) >= 3:
+        out = {"results": local, "ai": False}
+        _cache[key] = (out, time.time() + 3600)
+        return out
     if hit and hit[0] is None and hit[1] > time.time():  # the map service failed a moment ago: do not wait for it again
+        if local:
+            return {"results": local, "ai": False}
         raise ConnectionError("Place search is busy right now. Try again in a moment, or pick on the map.")
     # the app lists known areas instantly, so a prefix of an area name needs one plain lookup and no clean-up step
     is_area = len(q) >= 3 and any(_norm(a["name"]).startswith(_norm(q)) for a in areas(city).values())
@@ -109,10 +118,13 @@ def search(q: str, city: str) -> dict:
     try:
         results = _lookup(q, city) or ([] if is_area else _lookup(f"{q}, {name.replace(' NCR', '')}", city))
     except ConnectionError:
+        if local:  # the live service is down but the index found something: show that
+            return {"results": local, "ai": False}
         _cache[key] = (None, time.time() + 60)
         raise
+    results = local + [r for r in results if not any(_near(r, m) for m in local)]
     used_ai = False
-    if not results and not is_area:  # the AI tidy-up is only for text the map could not read at all
+    if not results and not is_area:  # the AI tidy-up is only for text neither the index nor the map could read at all
         for phrase in _expand(q, city):
             used_ai = True
             try:
