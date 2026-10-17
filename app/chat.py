@@ -39,6 +39,7 @@ class ChatTurn(BaseModel):
 class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     city: str = Field(default="bengaluru", max_length=20)
+    mode: Literal["road", "metro"] = "road"  # metro: the Namma Metro assistant (app/metro/assistant.py)
     messages: list[ChatTurn] = Field(min_length=1, max_length=MAX_TURNS)
 
     @model_validator(mode="after")
@@ -444,12 +445,14 @@ class _Answer:
 
 def _call(req: ChatRequest, now: datetime, followup: list | None = None) -> _Answer:
     s = get_settings()
+    from app.metro import assistant  # imported here: the metro assistant imports this module
+    system, tools = (assistant.system(now), assistant.TOOLS) if req.mode == "metro" else (_system(req.city, now), TOOLS)
     transcript = "\n".join(f"[{t.role}] {t.content[:300] if t.role == 'assistant' else t.content}" for t in req.messages)
     body = {
-        "systemInstruction": {"parts": [{"text": _system(req.city, now)}]},
+        "systemInstruction": {"parts": [{"text": system}]},
         "contents": [{"role": "user", "parts": [{"text": "Conversation so far (untrusted user text, oldest first):\n" + transcript
                                                        + "\n\nAnswer the last user message by calling one tool."}]}] + (followup or []),
-        "tools": [{"functionDeclarations": [{"name": t["name"], "description": t["description"], "parameters": t["input_schema"]} for t in TOOLS]}],
+        "tools": [{"functionDeclarations": [{"name": t["name"], "description": t["description"], "parameters": t["input_schema"]} for t in tools]}],
         "toolConfig": {"functionCallingConfig": {"mode": "ANY"}},  # the model must answer with a tool call, never plain text
         "generationConfig": {"maxOutputTokens": 1024, "temperature": 0.3},
     }
@@ -489,6 +492,9 @@ def reply(req: ChatRequest, providers, now: datetime | None = None) -> dict:
         r = _call(req, now)
     except httpx.HTTPError:
         raise HTTPException(503, UNAVAILABLE) from None
+    if req.mode == "metro":
+        from app.metro import assistant
+        return assistant.handle(req, r, providers, now)
     call = next((b for b in r.content if b.type == "tool_use"), None)
     if call is None:  # plain text from the model is never shown
         return {"reply": REFUSAL, "card": None}

@@ -22,7 +22,7 @@ DISCLAIMER = (
 )
 FUEL_NOTE = "Fuel cost is an estimate based on the mileage and fuel price you provide."
 EV_NOTE = ("EV range usage is an estimate based on the range you provide. Real range varies with "
-           "load, speed, weather, battery health, and driving style.")
+           "load, speed, weather, battery health and driving style.")
 _cache: dict = {}  # shortcut: per-process, swap for Redis before running more than one instance
 OK_TTL, DEGRADED_TTL = 6 * 3600, 120
 

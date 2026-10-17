@@ -11,8 +11,9 @@ import time
 
 import httpx
 
-from app.chat import _clean, _within_budget
+from app.chat import _clean, _norm, _within_budget
 from app.config import get_city, get_settings
+from app.service import areas
 
 NOMINATIM = "https://nominatim.openstreetmap.org/search"
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{}:generateContent"
@@ -96,14 +97,22 @@ def search(q: str, city: str) -> dict:
     q = " ".join(q.split())[:100]
     key = (q.lower(), city)
     hit = _cache.get(key)
-    if hit and hit[1] > time.time():
+    if hit and hit[1] > time.time() and hit[0] is not None:
         return hit[0]
     name = get_city(city)["name"]
+    if hit and hit[0] is None and hit[1] > time.time():  # the map service failed a moment ago: do not wait for it again
+        raise ConnectionError("Place search is busy right now. Try again in a moment, or pick on the map.")
+    # the app lists known areas instantly, so a prefix of an area name needs one plain lookup and no clean-up step
+    is_area = len(q) >= 3 and any(_norm(a["name"]).startswith(_norm(q)) for a in areas(city).values())
     # the search is already boxed to the city, so the plain text goes first; the city name is only a second try
     # ("Delhi NCR" would hide Gurugram and Noida places, so the suffix drops NCR)
-    results = _lookup(q, city) or _lookup(f"{q}, {name.replace(' NCR', '')}", city)
+    try:
+        results = _lookup(q, city) or ([] if is_area else _lookup(f"{q}, {name.replace(' NCR', '')}", city))
+    except ConnectionError:
+        _cache[key] = (None, time.time() + 60)
+        raise
     used_ai = False
-    if len(results) < 3:
+    if not results and not is_area:  # the AI tidy-up is only for text the map could not read at all
         for phrase in _expand(q, city):
             used_ai = True
             try:
@@ -120,5 +129,5 @@ def search(q: str, city: str) -> dict:
     out = {"results": tidy[:MAX_RESULTS], "ai": used_ai}
     if len(_cache) > 500:
         _cache.clear()
-    _cache[key] = (out, time.time() + 3600)
+    _cache[key] = (out, time.time() + (3600 if tidy else 600))  # a "nothing found" answer is remembered for 10 min only
     return out

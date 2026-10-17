@@ -6,14 +6,21 @@ from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from app.api import router
+from app.compare_api import router as compare_router
 from app.config import get_settings
 from app.limits import limiter
+from app.metro_api import router as metro_router
+from app.metro_api import warm as metro_warm
 from app.preflight import enforce
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     enforce(get_settings())  # production only: fails fast on unsafe settings
+    try:
+        metro_warm()  # load the metro files and the areas table now, not on the first visitor's request
+    except Exception:  # noqa: BLE001  the metro endpoints answer 503 on their own if the data is broken
+        pass
     yield
 
 
@@ -64,6 +71,8 @@ app.add_middleware(
     allow_headers=["Content-Type"],  # no cookies or tokens are used any more, so no credentials either
 )
 app.include_router(router)
+app.include_router(metro_router)
+app.include_router(compare_router)
 
 
 @app.middleware("http")
