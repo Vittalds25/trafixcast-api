@@ -1,0 +1,139 @@
+{
+ "source": "Namma Metro (BMRCL) hourly station and station-pair ridership obtained under the RTI Act by Vonter, compiled at https://github.com/Vonter/bmrcl-ridership-hourly",
+ "licence": "ODbL 1.0",
+ "licence_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+ "dataset_url": "https://github.com/Vonter/bmrcl-ridership-hourly",
+ "attribution": "Ridership data: BMRCL via RTI, compiled by Vonter/bmrcl-ridership-hourly (ODbL)",
+ "coverage": "Station boardings and exits per hour: 2025-08-01..2025-08-18 and 2025-09-01..2025-09-30 (48 days, 83 stations). Origin-destination pair flows: 2025-08-01..2025-08-18 only.",
+ "method": {
+  "ridership.json": "Median over the dates of each daytype, per station and hour (index = hour 0-23, IST), rounded to integers.",
+  "segments.json": "Each origin-destination flow takes ONE shortest path by number of stops (Dijkstra over (station, line) nodes; a line change at an interchange station costs 2 stop-equivalents, so a transfer is only taken when it saves more than 2 stops). 100% of the flow of a pair follows its single path (no split between alternatives), and the line change happens at the interchange station where the path first needs the other line. The pair file has no time-of-travel offset, so the whole flow is assigned to the hour of boarding at the origin (a trip that crosses an hour boundary is counted on all its links in the boarding hour). Link load = sum of routed pair flows per directed link per hour per date, then median per daytype.",
+  "daytype_rule": "A date is 'holiday' if it is a Karnataka general public holiday falling Monday-Saturday (list above); otherwise by IST calendar weekday: Mon-Fri weekday, Sat saturday, Sun sunday. Holiday dates present in the data: 2025-08-15 and 2025-09-05 (daily totals 668k and 648k, i.e. Saturday-like, vs ~780k normal weekdays). Only 2 holiday dates, so holiday medians are the mean of 2 days per hour.",
+  "holidays": {
+   "2025-08-15": "Independence Day",
+   "2025-08-27": "Ganesh Chaturthi (Varasiddhi Vinayaka Vrata)",
+   "2025-09-05": "Eid-e-Milad"
+  }
+ },
+ "limitations": [
+  "Aug-Sep 2025 only; ridership has grown and network phases opened since (e.g. new Pink/Yellow sections), so absolute levels are dated.",
+  "Pair flows (and therefore link loads) only cover Aug 1-18, 2025 (18 days, 1 holiday date: Aug 15); September has no pair data.",
+  "The Yellow Line (RV Road - Bommasandra) opened to the public on 2025-08-10/11: its stations have near-zero data before that and those station-days are excluded from medians; its link loads rest on about 7 days (Aug 11-18), and weekend/holiday Yellow medians on 1-2 days.",
+  "Holiday medians use 2 dates (2025-08-15, 2025-09-05) for boardings/exits and 1 date (2025-08-15) for link loads.",
+  "Aug 19-31 are absent from the data (RTI window), so the Ganesh Chaturthi holiday (Aug 27) has no observations.",
+  "Hourly counts are historical; they are not live crowding and not train loads. Link loads assume every passenger takes the single shortest path and travels entirely in the hour of boarding.",
+  "Stations or lines opened after the data period have no history.",
+  "fares.json: fares are from Aug 2025 and may have changed since; QR/smart-card discounts are not applied.",
+  "2025-08-08 (Friday, Varamahalakshmi, an optional holiday) has unusually low volume; it is kept as a weekday."
+ ],
+ "quality": {
+  "missing_dates_in_windows": [],
+  "network_zero_hours_6_21": [],
+  "station_days_excluded_as_outage": [
+   "Sri Sathya Sai Hospital@2025-08-17 (<10% of typical)",
+   "Jayadeva Hospital@2025-08-03 (<10% of typical)",
+   "Jayadeva Hospital@2025-08-09 (<10% of typical)",
+   "Hongasandra@2025-08-06 (<10% of typical)",
+   "Ragigudda@2025-08-06 (<10% of typical)",
+   "Ragigudda@2025-08-08 (<10% of typical)",
+   "Ragigudda@2025-08-09 (<10% of typical)",
+   "Ragigudda@2025-08-10 (<10% of typical)",
+   "Infosys Foundation Konappana Agrahara@2025-08-07 (<10% of typical)",
+   "Infosys Foundation Konappana Agrahara@2025-08-09 (<10% of typical)",
+   "Kudlu Gate@2025-08-08 (<10% of typical)",
+   "Huskur Road@2025-08-09 (<10% of typical)"
+  ],
+  "missing_cells": 0,
+  "partial_zero_hours_busy_stations_7_20": [
+   "Jayanagar@2025-08-10 10h",
+   "Jayanagar@2025-08-10 11h",
+   "Lalbagh@2025-08-10 10h",
+   "Lalbagh@2025-08-10 11h",
+   "Rashtreeya Vidyalaya Road@2025-08-10 10h",
+   "Rashtreeya Vidyalaya Road@2025-08-10 11h",
+   "South End Circle@2025-08-10 10h",
+   "South End Circle@2025-08-10 11h"
+  ],
+  "low_weekday_totals": {
+   "2025-08-08": 545543
+  },
+  "weekday_median_daily_total": 775529,
+  "holiday_daily_totals": {
+   "2025-08-15": 668554,
+   "2025-09-05": 648115
+  },
+  "board_file": {
+   "renamed": 0,
+   "negative": 0,
+   "absurd": 0,
+   "dupe": 0,
+   "unknown_station": []
+  },
+  "exit_file": {
+   "renamed": 0,
+   "negative": 0,
+   "absurd": 0,
+   "dupe": 0,
+   "unknown_station": []
+  }
+ },
+ "segments_validation": {
+  "board_sum_error_pct": -0.87,
+  "mean_abs_station_error_pct": 1.79,
+  "worst_stations": [
+   {
+    "station": "lalbagh",
+    "routed_vs_boardings_pct": 6.53,
+    "all_origin_vs_boardings_pct": 6.75
+   },
+   {
+    "station": "bommanahalli",
+    "routed_vs_boardings_pct": -6.04,
+    "all_origin_vs_boardings_pct": -4.0
+   },
+   {
+    "station": "delta-electronics-bommasandra",
+    "routed_vs_boardings_pct": -5.73,
+    "all_origin_vs_boardings_pct": -4.74
+   },
+   {
+    "station": "btm-layout",
+    "routed_vs_boardings_pct": -5.73,
+    "all_origin_vs_boardings_pct": -3.66
+   },
+   {
+    "station": "beratena-agrahara",
+    "routed_vs_boardings_pct": -5.56,
+    "all_origin_vs_boardings_pct": -3.07
+   },
+   {
+    "station": "hosa-road",
+    "routed_vs_boardings_pct": -5.41,
+    "all_origin_vs_boardings_pct": -4.1
+   }
+  ],
+  "worst_exit_stations": [
+   {
+    "station": "jayadeva-hospital",
+    "routed_vs_exits_pct": -2.77
+   },
+   {
+    "station": "beratena-agrahara",
+    "routed_vs_exits_pct": -2.68
+   },
+   {
+    "station": "bommanahalli",
+    "routed_vs_exits_pct": -2.07
+   }
+  ],
+  "unrouted_passengers": 0,
+  "unrouted_pairs": 0,
+  "path_length_check": {
+   "pairs_compared": 6805,
+   "mismatches": 0,
+   "examples": []
+  },
+  "notes": "Routed origin passengers (pairs with o != d and a path) vs station-hourly boardings, Aug 1-18, summed per station; negative = pair file has fewer than boardings (same-station trips, unrouted pairs, RTI differences between the two reports). Path stop count compared with 'Travelled Stations'."
+ },
+ "generated": "2026-10-17"
+}

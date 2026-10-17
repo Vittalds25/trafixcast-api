@@ -1,0 +1,51 @@
+version: 1
+updated: 2026-10-17
+disclaimer: "Indicative. Apps and drivers vary, prices change with demand and time of day."
+walk:
+  speed_m_per_min: 80          # ~4.8 km/h, typical adult walking speed
+  detour_factor: 1.3           # straight-line to street distance, same value the planner already uses
+  comfortable_max_min: 10
+  source: [metro/CONTRACT.md engine defaults (assumption, not a published figure)]
+  confidence: inferred
+bike_taxi:
+  available: true              # legal status contested, see notes
+  per_km_inr: 8                # per km after base_km; no published 2025-26 tariff, see basis
+  min_fare_inr: 35
+  base_km: 2
+  speed_kmph: {lo: 15, hi: 22}   # door-to-door in city traffic incl. detours (assumption, bikes filter through traffic faster than autos)
+  pickup_wait_min: {lo: 3, hi: 8}
+  night_factor: 1.0            # no sourced night surcharge for bike taxis
+  cost_spread_pct: 25          # surge, pickup charges, rounding
+  basis: "Inferred from reports: Indiranagar-MG Road (~3.5 km) about Rs 35 pre-ban (Deccan Herald), fares at least 30% higher after services resumed in Aug 2025 (Deccan Herald 'bike taxi fares climb'); Rapido reported to add a Rs 20 pickup charge and surge. 35 + 8 x (3.5-2) = Rs 47. Old 2016-19 rates (Rs 3-5/km) are outdated and not used."
+  source:
+    - https://www.deccanherald.com/amp/story/india%2Fkarnataka%2Fbengaluru%2Fbike-taxi-fares-climb-commuters-cry-foul-3718273
+    - https://www.deccanherald.com/amp/story/india%2Fkarnataka%2Fbengaluru%2Fauto-fares-skyrocket-in-bengaluru-after-bike-taxi-ban-commuters-in-a-fix-3590839
+    - https://www.deccanherald.com/amp/story/india%2Fkarnataka%2Fbengaluru%2Fact-against-overcharging-autorickshaw-drivers-minister-directs-transport-commissioner-3607380
+  confidence: inferred
+auto:
+  # Notified by the Bengaluru Urban RTA, effective 2025-08-01 (previous revision Nov 2021: Rs 30 / Rs 15). Applies within BBMP limits.
+  # No 2026 revision found in searches (checked 2026-10-17). Meter recalibration deadline was 2025-10-31; many meters were slow to update.
+  effective: "2025-08-01"
+  min_fare_inr: 36
+  base_km: 2
+  per_km_inr: 18
+  night_factor: 1.5
+  night_from: "22:00"
+  night_to: "05:00"
+  waiting: "first 5 min free, then Rs 10 per 15 min"
+  luggage: "up to 20 kg free, then Rs 10 per 20 kg, capped at 50 kg"
+  app_note: "App autos (Namma Yatri showed Rs 40 min / Rs 19 per km in an Aug 2026 report; others reported 20-30% above meter, Rapido adds a Rs 20 pickup charge). Not modelled; spread covers it."
+  speed_kmph: {lo: 14, hi: 20}   # assumption
+  pickup_wait_min: {lo: 4, hi: 12}   # assumption; autos refuse/cancel often in Bengaluru (Deccan Herald)
+  cost_spread_pct: 25
+  source:
+    - https://thesouthfirst.com/karnataka/auto-fares-revised-in-bengaluru-effective-from-august-1/
+    - https://www.theweek.in/news/biz-tech/2025/07/15/bengaluru-auto-fare-hike-everything-you-need-to-know-about-the-price-revision-from-august-1.amp.html
+    - https://www.deccanherald.com/amp/story/india%2Fkarnataka%2Fbengaluru%2Fbengaluru-auto-fares-to-increase-from-august-1-3630129
+    - https://www.newsbytesapp.com/news/bengaluru/bengaluru-new-autorickshaw-fares-effective-from-august-1/story
+  confidence: verified          # tariff numbers: government-notified, several outlets agree. Speeds/waits are inferred.
+notes:
+  - "Karnataka bike taxis: the High Court (Jun 2025) halted them; a Division Bench lifted the ban in Jan 2026 (state may regulate but not refuse registration). The state appealed to the Supreme Court (reported Apr 2026); outcome not confirmed. Transport department crackdowns were still reported in Aug 2026. Treat bike taxi availability as legally unclear."
+  - "Bike taxi fare numbers are estimates inferred from news reports, not a published tariff. Uber and Rapido have not published theirs."
+  - "Auto tariff numbers are verified (notified); speeds and pickup waits are assumptions."
+  - "Prices are indicative; apps vary with demand. Never present as live prices."

@@ -1,0 +1,62 @@
+# Tunable metro engine values. Each one says why. Crowd numbers are HISTORICAL estimates (Aug-Sep 2025 ridership), not live.
+walk_speed_m_per_min: 80      # ~4.8 km/h, an easy city walking pace
+walk_detour_factor: 1.3       # streets are longer than the straight line; walking minutes = straight distance x this / speed
+snap_max_km: 8                # plan and compare snap a place to the nearest station up to this far (straight line). Beyond ~5 km the trip is mostly
+                              # a bike taxi or auto ride to the station, which the last-mile engine prices; past 8 km the metro is not a sensible
+                              # option, so we refuse with a plain message instead of pretending
+far_warn_km: 5                # above this a plain warning says most of the trip is the ride to or from the station
+station_access_min: 3         # entrance -> platform (security check, concourse, stairs); assumption, not measured
+station_egress_min: 2         # platform -> street at the end; assumption
+default_transfer_walk_min: 5  # used only when network.yaml has no walking time for an interchange; flagged as approximate
+transfer_penalty_min: 4       # routing only (not shown): prefer fewer changes unless the change saves more than this
+slot_step_min: 30
+wait_fraction: 0.5            # average wait for a train when you arrive at random = half the headway
+range:
+  wait_lo_frac: 0.2           # the "good" end of the range: you wait 20% of the headway ...
+  wait_hi_frac: 0.8           # ... and the "bad" end: 80% (the middle 60% of random arrivals)
+  ride_hi_pct: 0.10           # rides can run up to 10% longer (dwell, signals); there is no faster-than-timetable lo
+# Crowd. score (the bar) = P / crush, where P = passengers per train = link load per hour / trains per hour.
+# The LEVEL uses absolute anchors on P, not fractions of crush, because a seat depends on the seated count (~300 of
+# ~2004 crush, 15%), not on how close the train is to crush. All thresholds are ASSUMPTIONS (no on-train counts exist):
+#   low (seat likely)      P < 0.7 x seated        (~210): about 30% of seats still empty on average, so a seat is likely
+#   moderate (standing room, seat possible)   P < 0.30 x crush (~600): every seat is probably taken but there is room to stand
+#   high (crowded)         P < 0.45 x crush (~900): standing close to others, a seat is unlikely
+#   packed                 above that: no seats, hard to board at busy stations
+# train.seated comes from network.yaml (inferred ~50 per car); with none given it falls back to 15% of crush.
+crowd_levels: {seat_likely_x_seated: 0.7, standing_frac_crush: 0.30, crowded_frac_crush: 0.45}
+seat: {low: likely, moderate: possible, high: unlikely, packed: none}
+seat_phrase:
+  low: Seat likely
+  moderate: Standing room, a seat is possible
+  high: Crowded, a seat is unlikely
+  packed: Packed, no seats
+# Rain pushes some road and two-wheeler trips onto the metro. ASSUMPTION (no rain data in the ridership set):
+# the crowd score is multiplied by (1 + factor) for the forecast rain level at the slot time.
+rain_crowd_factor: {none: 0.0, light: 0.03, moderate: 0.08, heavy: 0.12}
+# "Best time" = the smallest (middle trip time + crowd penalty), so a slightly longer trip with a seat can beat a packed one.
+crowd_penalty_min: {low: 0, moderate: 3, high: 8, packed: 15}
+station:
+  nearby_radius_m: 1500
+  nearby_limit: 3
+  busiest_hours: 3
+chat:
+  default_window: [6, 22]     # when the user names no time: look at the whole service day
+  window_after_time_h: 3      # when the user names a time: that time and the three hours after it
+# Road vs metro comparison (POST /v1/compare). Every number here is an ASSUMPTION used only to rank the two options; the
+# time and cost figures shown to the user are the real estimates, never these.
+compare:
+  value_of_time_inr_per_min: 3.0  # ~Rs 180 an hour: what a minute saved is worth when trading time against money. A judgement call, not data
+  crowd_penalty_min: {low: 0, moderate: 5, high: 12, packed: 25}  # extra "minutes" a crowded train costs in comfort; assumption
+  tie_pct: 5                      # options within 5% of each other (generalised minutes) are called a tie: the choice depends on taste
+  long_walk_min: 20               # a walk to or from the station longer than this triggers the "short auto or Rapido may be needed" warning
+  words_min_diff_min: 3           # smaller time differences are described as "about the same"
+  words_min_diff_inr: 5           # same for rupees
+  # Road cost when the user gives no mileage (Compare is about cost, so it assumes a typical vehicle and says so). ASSUMPTIONS:
+  # round everyday figures for Indian city traffic, not measurements; the user can always enter their own.
+  typical_mileage_kmpl: {car: 15, bike: 45, scooter: 45}   # km per litre (km per kg for CNG)
+  default_fuel_type: petrol
+# Last mile (bike taxi / auto / walk to and from the station). Tariffs live in lastmile.yaml; these are the choice rules.
+lastmile:
+  min_distance_m: 150   # closer than this there is nothing to choose: you just walk, and no last-mile object is returned
+  # "best" = lowest (middle minutes + middle rupees / compare.value_of_time_inr_per_min) among eligible options; walking is
+  # eligible only up to lastmile.yaml walk.comfortable_max_min. A forced mode is honoured even when far-fetched, with a warning.

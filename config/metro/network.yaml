@@ -1,0 +1,2516 @@
+version: 1
+updated: '2026-10-17'
+network_notes: 'Operational lines as of 2026-10-17 per sources: Purple (Challaghatta-Whitefield, 37 stations, full since 2023-10-09), Green (Madavara-Silk Institute, 32 stations, full since 2024-11-07),
+  Yellow (RV Road-Bommasandra, 16 stations, opened 2025-08-10). 83 unique stations (Majestic and RV Road are shared). Pink Line (Kalena Agrahara-Tavarekere elevated part) was reported ready but awaiting
+  approval/opening (Sep 2026, unconfirmed) and Blue Line is under construction; neither appears in the ridership data (Aug-Sep 2025), so neither is included. Line order was verified against the Travelled
+  Stations column of stationpair-hourly-enhanced for all pairs on each line and across both interchanges (0 mismatches). Timings/headways are the best public information found; BMRCL timetable pages were
+  not machine-readable, so most are marked inferred. Frequencies change often; show "typical". Yellow headway reflects Dec 2025; ridership data for Yellow covers only its first 2 months.'
+lines:
+- id: purple
+  name: Purple Line
+  colour: '#7b2d8e'
+  terminals:
+  - challaghatta
+  - whitefield-kadugodi
+  stations:
+  - challaghatta
+  - kengeri
+  - kengeri-bus-terminal
+  - pattanagere
+  - jnanabharathi
+  - rajarajeshwari-nagar
+  - pantharapalya-nayandahalli
+  - mysore-road
+  - deepanjali-nagar
+  - attiguppe
+  - vijayanagar
+  - sri-balagangadharanatha-swamiji-station-hosahalli
+  - magadi-road
+  - krantivira-sangolli-rayanna-railway-station
+  - nadaprabhu-kempegowda-station-majestic
+  - sir-m-visvesvaraya-stn-central-college
+  - dr-b-r-ambedkar-station-vidhana-soudha
+  - cubbon-park
+  - mahatma-gandhi-road
+  - trinity
+  - halasuru
+  - indiranagar
+  - swami-vivekananda-road
+  - baiyappanahalli
+  - benniganahalli
+  - krishnarajapura
+  - singayyanapalya
+  - garudacharpalya
+  - hoodi
+  - seetharampalya
+  - kundalahalli
+  - nallurahalli
+  - sri-sathya-sai-hospital
+  - pattandur-agrahara
+  - kadugodi-tree-park
+  - hopefarm-channasandra
+  - whitefield-kadugodi
+  first_train:
+    a_to_b:
+      time: 05:00
+      source: https://www.thenewsminute.com/article/bengaluru-s-namma-metro-revises-timings-details-158897
+      confidence: inferred
+      sunday: 07:00
+      note: 2021 BMRCL release, 5:00 weekdays/Sat from terminals, Sunday 07:00. Not re-confirmed on official site.
+    b_to_a:
+      time: 05:00
+      source: https://www.thenewsminute.com/article/bengaluru-s-namma-metro-revises-timings-details-158897
+      confidence: inferred
+      sunday: 07:00
+      note: as above
+  last_train:
+    a_to_b:
+      time: '23:00'
+      source: https://www.thenewsminute.com/article/bengaluru-s-namma-metro-revises-timings-details-158897
+      confidence: inferred
+      note: '2021 release: last train 23:00 from terminals. Late-night extensions happen on special days (e.g. 2026-10-03).'
+    b_to_a:
+      time: '23:00'
+      source: https://www.thenewsminute.com/article/bengaluru-s-namma-metro-revises-timings-details-158897
+      confidence: inferred
+      note: as above
+  headway_min:
+    weekday:
+    - from: 05:00
+      to: 07:00
+      min: 10
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    - from: 07:00
+      to: '10:00'
+      min: 5
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    - from: '10:00'
+      to: '17:00'
+      min: 10
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    - from: '17:00'
+      to: '21:00'
+      min: 5
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    - from: '21:00'
+      to: '23:00'
+      min: 10
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    note: Typical, from older public reports; the true timetable is not machine-readable on bmrc.co.in. Trains are added over time.
+  avg_interstation_min: 2.3
+  dwell_s: 30
+  dwell_source:
+    source: https://en.wikipedia.org/wiki/Green_Line_(Namma_Metro)
+    confidence: inferred
+    note: 'Wikipedia: ~30 s stop per station.'
+  train:
+    cars: 6
+    capacity: 2004
+    seated: 300
+    seated_confidence: inferred
+    seated_note: ~50 seated per car x 6 (Wikipedia Namma Metro); not an official split
+    source: https://en.wikipedia.org/wiki/Green_Line_(Namma_Metro) ; https://en.wikipedia.org/wiki/Namma_Metro (BMRCL MD quoted 2,004 via Deccan Herald; The News Minute ~2,000)
+    confidence: verified
+    note: capacity = crush load (8 persons/m2 standing) for a six-car train
+  avg_interstation_basis:
+    source: https://en.wikipedia.org/wiki/Purple_Line_(Namma_Metro)
+    confidence: inferred
+    note: 82 min end-to-end (Wikipedia) / 36 hops = 2.28 incl. dwell
+- id: green
+  name: Green Line
+  colour: '#1b7f3b'
+  terminals:
+  - madavara
+  - silk-institute
+  stations:
+  - madavara
+  - chikkabidarakallu
+  - manjunathanagara
+  - nagasandra
+  - dasarahalli
+  - jalahalli
+  - peenya-industry
+  - peenya
+  - goraguntepalya
+  - yeshwantpur
+  - sandal-soap-factory
+  - mahalakshmi
+  - rajajinagar
+  - mahakavi-kuvempu-road
+  - srirampura
+  - mantri-square-sampige-road
+  - nadaprabhu-kempegowda-station-majestic
+  - chickpete
+  - krishna-rajendra-market
+  - national-college
+  - lalbagh
+  - south-end-circle
+  - jayanagar
+  - rashtreeya-vidyalaya-road
+  - banashankari
+  - jaya-prakash-nagar
+  - yelachenahalli
+  - konanakunte-cross
+  - doddakallasandra
+  - vajarahalli
+  - thalaghattapura
+  - silk-institute
+  first_train:
+    a_to_b:
+      time: 05:00
+      source: https://www.thenewsminute.com/karnataka/bengalurus-namma-metro-green-line-extends-to-madavara
+      confidence: inferred
+      sunday: 07:00
+      note: Madavara 05:00 (TNM Nov 2024 opening report 5am-11pm); Sunday 07:00 per 2021 release
+    b_to_a:
+      time: 05:00
+      source: https://www.thenewsminute.com/article/bengaluru-s-namma-metro-revises-timings-details-158897
+      confidence: inferred
+      sunday: 07:00
+      note: as above
+  last_train:
+    a_to_b:
+      time: '23:00'
+      source: https://www.thenewsminute.com/karnataka/bengalurus-namma-metro-green-line-extends-to-madavara
+      confidence: inferred
+      note: '2021 release: last train 23:00 from terminals. Late-night extensions happen on special days (e.g. 2026-10-03).'
+    b_to_a:
+      time: '23:00'
+      source: https://www.thenewsminute.com/article/bengaluru-s-namma-metro-revises-timings-details-158897
+      confidence: inferred
+      note: as above
+  headway_min:
+    weekday:
+    - from: 05:00
+      to: 07:00
+      min: 10
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    - from: 07:00
+      to: '10:00'
+      min: 5
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    - from: '10:00'
+      to: '17:00'
+      min: 10
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    - from: '17:00'
+      to: '21:00'
+      min: 5
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    - from: '21:00'
+      to: '23:00'
+      min: 10
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-to-resume-operations-from-september-7-with-peak-hour-trains-on-purple-line-881606.html
+      confidence: inferred
+      note: 'Peak 5 min / off-peak 10 min: Deccan Herald 2020 reopening report (5/10) and travel guides (bengalurumetro.in, hexahome) quoting 5 min peak, 10-15 off-peak; no official current timetable readable.
+        Peak windows 07-10 and 17-21 are from guides. Real peak is probably tighter (3.5-5 min) but fleet is short (Swarajya Dec 2025).'
+    note: Typical, from older public reports; the true timetable is not machine-readable on bmrc.co.in. Trains are added over time.
+  avg_interstation_min: 2.0
+  dwell_s: 30
+  dwell_source:
+    source: https://en.wikipedia.org/wiki/Green_Line_(Namma_Metro)
+    confidence: inferred
+    note: 'Wikipedia: ~30 s stop per station.'
+  train:
+    cars: 6
+    capacity: 2004
+    seated: 300
+    seated_confidence: inferred
+    seated_note: ~50 seated per car x 6 (Wikipedia Namma Metro); not an official split
+    source: https://en.wikipedia.org/wiki/Green_Line_(Namma_Metro) ; https://en.wikipedia.org/wiki/Namma_Metro (BMRCL MD quoted 2,004 via Deccan Herald; The News Minute ~2,000)
+    confidence: verified
+    note: capacity = crush load (8 persons/m2 standing) for a six-car train
+  avg_interstation_basis:
+    source: https://en.wikipedia.org/wiki/Namma_Metro
+    confidence: inferred
+    note: 33.46 km, 31 hops, network avg 35 km/h -> ~1.9 min; rounded up for dwell
+- id: yellow
+  name: Yellow Line
+  colour: '#8a6a00'
+  terminals:
+  - rashtreeya-vidyalaya-road
+  - delta-electronics-bommasandra
+  stations:
+  - rashtreeya-vidyalaya-road
+  - ragigudda
+  - jayadeva-hospital
+  - btm-layout
+  - central-silk-board
+  - bommanahalli
+  - hongasandra
+  - kudlu-gate
+  - singasandra
+  - hosa-road
+  - beratena-agrahara
+  - electronic-city
+  - infosys-foundation-konappana-agrahara
+  - huskur-road
+  - biocon-hebbagodi
+  - delta-electronics-bommasandra
+  first_train:
+    a_to_b:
+      time: 06:00
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-bengaluru-yellow-line-trains-to-run-every-19-mins-from-september-10-3719425
+      confidence: inferred
+      sunday: 07:00
+      note: From Sep 2025 (was 06:30); Sunday 07:00. Source page returned 403; taken from search summary.
+    b_to_a:
+      time: 06:00
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-bengaluru-yellow-line-trains-to-run-every-19-mins-from-september-10-3719425
+      confidence: inferred
+      sunday: 07:00
+      note: as above
+  last_train:
+    a_to_b:
+      time: '23:55'
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-bengaluru-yellow-line-trains-to-run-every-19-mins-from-september-10-3719425
+      confidence: inferred
+      note: RV Road last service 23:55 (Sep 2025 report; Dec 2025 said no change)
+    b_to_a:
+      time: '22:42'
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metro-bengaluru-yellow-line-trains-to-run-every-19-mins-from-september-10-3719425
+      confidence: inferred
+      note: Bommasandra last service 22:42 (same report)
+  headway_min:
+    weekday:
+    - from: 06:00
+      to: 08:00
+      min: 15
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metros-yellow-line-trains-to-run-every-13-minutes-from-tuesday-3839503
+      confidence: inferred
+      note: before Dec 2025 all day 15 min; off-peak not restated
+    - from: 08:00
+      to: '12:00'
+      min: 13
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metros-yellow-line-trains-to-run-every-13-minutes-from-tuesday-3839503
+      confidence: verified
+      note: peak from 2025-12-23, Mon-Sat (Sunday peak 15)
+    - from: '12:00'
+      to: '16:00'
+      min: 15
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metros-yellow-line-trains-to-run-every-13-minutes-from-tuesday-3839503
+      confidence: inferred
+      note: off-peak assumed unchanged
+    - from: '16:00'
+      to: '21:00'
+      min: 13
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metros-yellow-line-trains-to-run-every-13-minutes-from-tuesday-3839503
+      confidence: verified
+      note: peak from 2025-12-23, Mon-Sat
+    - from: '21:00'
+      to: '23:55'
+      min: 15
+      source: https://www.deccanherald.com/india/karnataka/bengaluru/namma-metros-yellow-line-trains-to-run-every-13-minutes-from-tuesday-3839503
+      confidence: inferred
+      note: assumption
+    note: Typical, from older public reports; the true timetable is not machine-readable on bmrc.co.in. Trains are added over time.
+    sunday_note: Sunday peak 15 min (DH Dec 2025).
+  avg_interstation_min: 2.2
+  dwell_s: 30
+  dwell_source:
+    source: https://en.wikipedia.org/wiki/Green_Line_(Namma_Metro)
+    confidence: inferred
+    note: 'Wikipedia: ~30 s stop per station.'
+  train:
+    cars: 6
+    capacity: 2004
+    seated: 300
+    seated_confidence: inferred
+    seated_note: ~50 seated per car x 6 (Wikipedia Namma Metro); not an official split
+    source: 'https://en.wikipedia.org/wiki/Yellow_Line_(Namma_Metro) ; assumption: same six-car, ~2,004 crush capacity not confirmed for CRRC Yellow Line trains'
+    confidence: inferred
+    note: Yellow runs CRRC/Titagarh six-car driverless trains; BMRCL figure for these not found. 2,004 reused from Green/Purple stock, treat as approximate.
+  avg_interstation_basis:
+    source: https://en.wikipedia.org/wiki/Yellow_Line_(Namma_Metro)
+    confidence: inferred
+    note: 19.15 km, 15 hops, 35 km/h network avg -> ~2.2 incl. dwell
+stations:
+- id: attiguppe
+  name: Attiguppe
+  display: Attiguppe
+  aliases: []
+  codes:
+  - AGPP
+  lines:
+  - purple
+  lat: 12.96189
+  lon: 77.53358
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: btm-layout
+  name: BTM Layout
+  display: BTM Layout
+  aliases: []
+  codes:
+  - BTML
+  lines:
+  - yellow
+  lat: 12.91659
+  lon: 77.60812
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: baiyappanahalli
+  name: Baiyappanahalli
+  display: Baiyappanahalli
+  aliases:
+  - Byappanahalli
+  - SMVT Bengaluru
+  codes:
+  - BYPH
+  lines:
+  - purple
+  lat: 12.99076
+  lon: 77.65236
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: banashankari
+  name: Banashankari
+  display: Banashankari
+  aliases:
+  - Banashankarl
+  codes:
+  - BNSK
+  - BSNK
+  lines:
+  - green
+  lat: 12.91522
+  lon: 77.5736
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: benniganahalli
+  name: Benniganahalli
+  display: Benniganahalli
+  aliases: []
+  codes:
+  - JTPM
+  lines:
+  - purple
+  lat: 12.9965
+  lon: 77.66848
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: beratena-agrahara
+  name: Beratena Agrahara
+  display: Beratena Agrahara
+  aliases: []
+  codes:
+  - HOSR
+  lines:
+  - yellow
+  lat: 12.86388
+  lon: 77.6579
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: biocon-hebbagodi
+  name: Biocon Hebbagodi
+  display: Hebbagodi
+  aliases:
+  - Hebbagodi
+  - Biocon
+  codes:
+  - HBGI
+  lines:
+  - yellow
+  lat: 12.82903
+  lon: 77.68137
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: bommanahalli
+  name: Bommanahalli
+  display: Bommanahalli
+  aliases: []
+  codes:
+  - HSRL
+  lines:
+  - yellow
+  lat: 12.91062
+  lon: 77.62648
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: central-silk-board
+  name: Central Silk Board
+  display: Central Silk Board
+  aliases: []
+  codes:
+  - SBJT
+  lines:
+  - yellow
+  lat: 12.91658
+  lon: 77.62057
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: challaghatta
+  name: Challaghatta
+  display: Challaghatta
+  aliases: []
+  codes:
+  - CLG
+  - CLGA
+  - CLGT
+  lines:
+  - purple
+  lat: 12.89735
+  lon: 77.46129
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: chickpete
+  name: Chickpete
+  display: Chickpete
+  aliases: []
+  codes:
+  - CHPK
+  - CKPE
+  lines:
+  - green
+  lat: 12.9669
+  lon: 77.57456
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: chikkabidarakallu
+  name: Chikkabidarakallu
+  display: Chikkabidarakallu
+  aliases: []
+  codes:
+  - JIDL
+  lines:
+  - green
+  lat: 13.05236
+  lon: 77.48792
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: cubbon-park
+  name: Cubbon Park
+  display: Cubbon Park
+  aliases: []
+  codes:
+  - CBPK
+  lines:
+  - purple
+  lat: 12.98096
+  lon: 77.59758
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: dasarahalli
+  name: Dasarahalli
+  display: Dasarahalli
+  aliases: []
+  codes:
+  - DSH
+  lines:
+  - green
+  lat: 13.04326
+  lon: 77.51255
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: deepanjali-nagar
+  name: Deepanjali Nagar
+  display: Deepanjali Nagar
+  aliases: []
+  codes:
+  - DJNR
+  lines:
+  - purple
+  lat: 12.95206
+  lon: 77.53701
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: delta-electronics-bommasandra
+  name: Delta Electronics Bommasandra
+  display: Bommasandra
+  aliases:
+  - Bommasandra
+  - Delta Electronics
+  codes:
+  - BMSD
+  lines:
+  - yellow
+  lat: 12.81939
+  lon: 77.68835
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: doddakallasandra
+  name: Doddakallasandra
+  display: Doddakallasandra
+  aliases: []
+  codes:
+  - KLPK
+  lines:
+  - green
+  lat: 12.88464
+  lon: 77.55275
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: dr-b-r-ambedkar-station-vidhana-soudha
+  name: Dr. B. R. Ambedkar Station, Vidhana Soudha
+  display: Vidhana Soudha
+  aliases:
+  - Vidhana Soudha
+  - Ambedkar Station
+  codes:
+  - VDSA
+  lines:
+  - purple
+  lat: 12.97874
+  lon: 77.59164
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: electronic-city
+  name: Electronic City
+  display: Electronic City
+  aliases: []
+  codes:
+  - ETCT
+  lines:
+  - yellow
+  lat: 12.85651
+  lon: 77.66352
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: garudacharpalya
+  name: Garudacharpalya
+  display: Garudacharpalya
+  aliases: []
+  codes:
+  - GDCP
+  lines:
+  - purple
+  lat: 12.99345
+  lon: 77.70368
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: goraguntepalya
+  name: Goraguntepalya
+  display: Goraguntepalya
+  aliases:
+  - Yeshwanthpur Industry
+  - Yeshwantpur Industry
+  codes:
+  - YPI
+  lines:
+  - green
+  lat: 13.02837
+  lon: 77.54075
+  geo_confidence: verified
+  geo_source: https://en.wikipedia.org/wiki/Goraguntepalya_metro_station (Wikipedia/Wikidata)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: halasuru
+  name: Halasuru
+  display: Halasuru
+  aliases: []
+  codes:
+  - HLRU
+  lines:
+  - purple
+  lat: 12.9765
+  lon: 77.62669
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: hongasandra
+  name: Hongasandra
+  display: Hongasandra
+  aliases: []
+  codes:
+  - OFDC
+  lines:
+  - yellow
+  lat: 12.9017
+  lon: 77.63199
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: hoodi
+  name: Hoodi
+  display: Hoodi
+  aliases: []
+  codes:
+  - DKIA
+  lines:
+  - purple
+  lat: 12.9888
+  lon: 77.71133
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: hopefarm-channasandra
+  name: Hopefarm Channasandra
+  display: Hopefarm
+  aliases:
+  - Hope Farm
+  - Channasandra
+  codes:
+  - UWVL
+  lines:
+  - purple
+  lat: 12.9873
+  lon: 77.75388
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: hosa-road
+  name: Hosa Road
+  display: Hosa Road
+  aliases: []
+  codes:
+  - BSRD
+  lines:
+  - yellow
+  lat: 12.87075
+  lon: 77.65245
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: huskur-road
+  name: Huskur Road
+  display: Huskur Road
+  aliases: []
+  codes:
+  - HSKR
+  lines:
+  - yellow
+  lat: 12.83916
+  lon: 77.67737
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: indiranagar
+  name: Indiranagar
+  display: Indiranagar
+  aliases: []
+  codes:
+  - IDN
+  lines:
+  - purple
+  lat: 12.97833
+  lon: 77.63866
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: infosys-foundation-konappana-agrahara
+  name: Infosys Foundation Konappana Agrahara
+  display: Konappana Agrahara
+  aliases:
+  - Konappana Agrahara
+  - Infosys Foundation
+  - Konappana Agrahara Electronic City
+  codes:
+  - ECTN
+  lines:
+  - yellow
+  lat: 12.84644
+  lon: 77.67119
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: jalahalli
+  name: Jalahalli
+  display: Jalahalli
+  aliases: []
+  codes:
+  - JHLI
+  - JLHL
+  lines:
+  - green
+  lat: 13.03941
+  lon: 77.51974
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: jaya-prakash-nagar
+  name: Jaya Prakash Nagar
+  display: JP Nagar
+  aliases:
+  - JP Nagar
+  - J P Nagar
+  codes:
+  - JPN
+  lines:
+  - green
+  lat: 12.90747
+  lon: 77.57313
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: jayadeva-hospital
+  name: Jayadeva Hospital
+  display: Jayadeva Hospital
+  aliases:
+  - Jayadeva
+  - Jayadeva Hospital Interchange
+  codes:
+  - JDHP
+  lines:
+  - yellow
+  lat: 12.91673
+  lon: 77.59997
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: jayanagar
+  name: Jayanagar
+  display: Jayanagar
+  aliases: []
+  codes:
+  - JAYN
+  - JYN
+  lines:
+  - green
+  lat: 12.92951
+  lon: 77.58014
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: jnanabharathi
+  name: Jnanabharathi
+  display: Jnanabharathi
+  aliases: []
+  codes:
+  - BGUC
+  lines:
+  - purple
+  lat: 12.93544
+  lon: 77.51241
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: kadugodi-tree-park
+  name: Kadugodi Tree Park
+  display: Kadugodi Tree Park
+  aliases:
+  - Tree Park
+  codes:
+  - KDGD
+  lines:
+  - purple
+  lat: 12.98565
+  lon: 77.74701
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: kengeri
+  name: Kengeri
+  display: Kengeri
+  aliases: []
+  codes:
+  - KGIT
+  lines:
+  - purple
+  lat: 12.90793
+  lon: 77.47657
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: kengeri-bus-terminal
+  name: Kengeri Bus Terminal
+  display: Kengeri Bus Terminal
+  aliases:
+  - Kengeri Bus Stand
+  codes:
+  - MLSD
+  lines:
+  - purple
+  lat: 12.91469
+  lon: 77.48786
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: konanakunte-cross
+  name: Konanakunte Cross
+  display: Konanakunte Cross
+  aliases:
+  - Konankunte Cross
+  codes:
+  - APRC
+  lines:
+  - green
+  lat: 12.88897
+  lon: 77.56267
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: krantivira-sangolli-rayanna-railway-station
+  name: Krantivira Sangolli Rayanna Railway Station
+  display: City Railway Station
+  aliases:
+  - KSR Railway Station
+  - City Railway Station
+  - Bangalore City Station
+  - Bengaluru City Junction
+  codes:
+  - BRCS
+  lines:
+  - purple
+  lat: 12.97588
+  lon: 77.56538
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: krishna-rajendra-market
+  name: Krishna Rajendra Market
+  display: KR Market
+  aliases:
+  - KR Market
+  - K R Market
+  codes:
+  - KRMT
+  lines:
+  - green
+  lat: 12.96088
+  lon: 77.57466
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: krishnarajapura
+  name: Krishnarajapura
+  display: KR Puram
+  aliases:
+  - KR Puram
+  - K R Puram
+  - Krishnarajapuram
+  codes:
+  - KRMA
+  - KRPM
+  lines:
+  - purple
+  lat: 12.9999
+  lon: 77.67767
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: kudlu-gate
+  name: Kudlu Gate
+  display: Kudlu Gate
+  aliases: []
+  codes:
+  - MSRN
+  lines:
+  - yellow
+  lat: 12.88993
+  lon: 77.63922
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: kundalahalli
+  name: Kundalahalli
+  display: Kundalahalli
+  aliases: []
+  codes:
+  - KDNH
+  lines:
+  - purple
+  lat: 12.97759
+  lon: 77.71556
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: lalbagh
+  name: Lalbagh
+  display: Lalbagh
+  aliases: []
+  codes:
+  - LAGH
+  - LBGH
+  lines:
+  - green
+  lat: 12.94653
+  lon: 77.58002
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: madavara
+  name: Madavara
+  display: Madavara
+  aliases: []
+  codes:
+  - BIET
+  lines:
+  - green
+  lat: 13.05742
+  lon: 77.47281
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: magadi-road
+  name: Magadi Road
+  display: Magadi Road
+  aliases: []
+  codes:
+  - MIRD
+  lines:
+  - purple
+  lat: 12.97563
+  lon: 77.55535
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: mahakavi-kuvempu-road
+  name: Mahakavi Kuvempu Road
+  display: Kuvempu Road
+  aliases:
+  - Kuvempu Road
+  codes:
+  - KVPR
+  lines:
+  - green
+  lat: 12.99853
+  lon: 77.5569
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: mahalakshmi
+  name: Mahalakshmi
+  display: Mahalakshmi
+  aliases: []
+  codes:
+  - MHLI
+  lines:
+  - green
+  lat: 13.00805
+  lon: 77.54881
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: mahatma-gandhi-road
+  name: Mahatma Gandhi Road
+  display: MG Road
+  aliases:
+  - MG Road
+  codes:
+  - MAGR
+  - MGRD
+  lines:
+  - purple
+  lat: 12.97553
+  lon: 77.60679
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: manjunathanagara
+  name: Manjunathanagara
+  display: Manjunathanagara
+  aliases:
+  - Manjunatha Nagar
+  codes:
+  - MNJN
+  lines:
+  - green
+  lat: 13.05009
+  lon: 77.49445
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: mantri-square-sampige-road
+  name: Mantri Square Sampige Road
+  display: Sampige Road
+  aliases:
+  - Sampige Road
+  - Mantri Square
+  codes:
+  - SPGD
+  lines:
+  - green
+  lat: 12.99046
+  lon: 77.57073
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: mysore-road
+  name: Mysore Road
+  display: Mysore Road
+  aliases:
+  - Mysuru Road
+  codes:
+  - MYRD
+  lines:
+  - purple
+  lat: 12.94672
+  lon: 77.53016
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: nadaprabhu-kempegowda-station-majestic
+  name: Nadaprabhu Kempegowda Station, Majestic
+  display: Majestic
+  aliases:
+  - Majestic
+  - Kempegowda
+  - Kempegowda Interchange
+  - KSR Metro
+  - Kempegowda Bus Station
+  codes:
+  - KGWA
+  lines:
+  - purple
+  - green
+  lat: 12.97571
+  lon: 77.57288
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_whitefield-kadugodi:
+        number: 1
+        confidence: inferred
+        source: https://en.wikipedia.org/wiki/Nadaprabhu_Kempegowda_station,_Majestic
+        note: 'Single non-official source (Wikipedia station page: P1 Whitefield, P2 Challaghatta, P3 Madavara, P4 Silk Institute); an older site conflicted. Show direction only, not the number, until confirmed.'
+      towards_challaghatta:
+        number: 2
+        confidence: inferred
+        source: https://en.wikipedia.org/wiki/Nadaprabhu_Kempegowda_station,_Majestic
+        note: 'Single non-official source (Wikipedia station page: P1 Whitefield, P2 Challaghatta, P3 Madavara, P4 Silk Institute); an older site conflicted. Show direction only, not the number, until confirmed.'
+    green:
+      towards_madavara:
+        number: 3
+        confidence: inferred
+        source: https://en.wikipedia.org/wiki/Nadaprabhu_Kempegowda_station,_Majestic
+        note: 'Single non-official source (Wikipedia station page: P1 Whitefield, P2 Challaghatta, P3 Madavara, P4 Silk Institute); an older site conflicted. Show direction only, not the number, until confirmed.'
+      towards_silk-institute:
+        number: 4
+        confidence: inferred
+        source: https://en.wikipedia.org/wiki/Nadaprabhu_Kempegowda_station,_Majestic
+        note: 'Single non-official source (Wikipedia station page: P1 Whitefield, P2 Challaghatta, P3 Madavara, P4 Silk Institute); an older site conflicted. Show direction only, not the number, until confirmed.'
+  interchange:
+  - from: purple
+    to: green
+    walk_min: 5
+    source: https://en.wikipedia.org/wiki/Namma_Metro
+    confidence: inferred
+    note: 'No published walking time. Assumption: Majestic is a large same-complex interchange (Purple Platforms 1-2, Green 3-4 per Wikipedia), 5 min incl. stairs/escalators. Treat as approximate.'
+- id: nagasandra
+  name: Nagasandra
+  display: Nagasandra
+  aliases: []
+  codes:
+  - NGSA
+  lines:
+  - green
+  lat: 13.04795
+  lon: 77.50014
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: nallurahalli
+  name: Nallurahalli
+  display: Nallurahalli
+  aliases:
+  - Nallur Halli
+  codes:
+  - VDHP
+  lines:
+  - purple
+  lat: 12.97664
+  lon: 77.72488
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: national-college
+  name: National College
+  display: National College
+  aliases: []
+  codes:
+  - NLC
+  lines:
+  - green
+  lat: 12.95053
+  lon: 77.57369
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: pantharapalya-nayandahalli
+  name: Pantharapalya - Nayandahalli
+  display: Nayandahalli
+  aliases:
+  - Nayandahalli
+  - Pantharapalya
+  codes:
+  - NYHM
+  lines:
+  - purple
+  lat: 12.94167
+  lon: 77.52512
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: pattanagere
+  name: Pattanagere
+  display: Pattanagere
+  aliases:
+  - Pattangere
+  codes:
+  - PATC
+  - PATG
+  lines:
+  - purple
+  lat: 12.92425
+  lon: 77.49835
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: pattandur-agrahara
+  name: Pattandur Agrahara
+  display: Pattandur Agrahara
+  aliases:
+  - ITPL
+  codes:
+  - ITPL
+  lines:
+  - purple
+  lat: 12.98764
+  lon: 77.73777
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: peenya
+  name: Peenya
+  display: Peenya
+  aliases: []
+  codes:
+  - PEYA
+  lines:
+  - green
+  lat: 13.03302
+  lon: 77.5332
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: peenya-industry
+  name: Peenya Industry
+  display: Peenya Industry
+  aliases:
+  - Peenya Industrial Estate
+  codes:
+  - PYID
+  lines:
+  - green
+  lat: 13.03632
+  lon: 77.52549
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: ragigudda
+  name: Ragigudda
+  display: Ragigudda
+  aliases: []
+  codes:
+  - RGDT
+  lines:
+  - yellow
+  lat: 12.91708
+  lon: 77.5883
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: rajajinagar
+  name: Rajajinagar
+  display: Rajajinagar
+  aliases: []
+  codes:
+  - RJNR
+  lines:
+  - green
+  lat: 13.00052
+  lon: 77.54966
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: rajarajeshwari-nagar
+  name: Rajarajeshwari Nagar
+  display: Rajarajeshwari Nagar
+  aliases: []
+  codes:
+  - RRRN
+  lines:
+  - purple
+  lat: 12.9366
+  lon: 77.51968
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: rashtreeya-vidyalaya-road
+  name: Rashtreeya Vidyalaya Road
+  display: RV Road
+  aliases:
+  - RV Road
+  - RV Road Interchange
+  codes:
+  - RVR
+  - RVRD
+  lines:
+  - green
+  - yellow
+  lat: 12.92158
+  lon: 77.5802
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+    yellow:
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+  interchange:
+  - from: green
+    to: yellow
+    walk_min: 6
+    source: https://en.wikipedia.org/wiki/Yellow_Line_(Namma_Metro)
+    confidence: inferred
+    note: 'No published walking time. Assumption: separate elevated Yellow concourse linked by a connector; 6 min. Treat as approximate.'
+- id: sandal-soap-factory
+  name: Sandal Soap Factory
+  display: Sandal Soap Factory
+  aliases: []
+  codes:
+  - SSFY
+  lines:
+  - green
+  lat: 13.01465
+  lon: 77.55398
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: seetharampalya
+  name: Seetharampalya
+  display: Seetharampalya
+  aliases: []
+  codes:
+  - VWIA
+  lines:
+  - purple
+  lat: 12.98086
+  lon: 77.70879
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: silk-institute
+  name: Silk Institute
+  display: Silk Institute
+  aliases: []
+  codes:
+  - APTS
+  lines:
+  - green
+  lat: 12.86173
+  lon: 77.52995
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: singasandra
+  name: Singasandra
+  display: Singasandra
+  aliases: []
+  codes:
+  - CKBR
+  lines:
+  - yellow
+  lat: 12.88082
+  lon: 77.64485
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    yellow:
+      towards_rashtreeya-vidyalaya-road:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_delta-electronics-bommasandra:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: singayyanapalya
+  name: Singayyanapalya
+  display: Singayyanapalya
+  aliases: []
+  codes:
+  - MDVP
+  lines:
+  - purple
+  lat: 12.99654
+  lon: 77.69272
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: sir-m-visvesvaraya-stn-central-college
+  name: Sir M. Visvesvaraya Stn., Central College
+  display: Central College
+  aliases:
+  - Central College
+  - Sir MV Station
+  - Sir M Visvesvaraya
+  - Visvesvaraya
+  - Sir.M. Visveshwaraya
+  codes:
+  - VSWA
+  lines:
+  - purple
+  lat: 12.97452
+  lon: 77.58422
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: south-end-circle
+  name: South End Circle
+  display: South End Circle
+  aliases: []
+  codes:
+  - SECE
+  lines:
+  - green
+  lat: 12.93826
+  lon: 77.58006
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: sri-balagangadharanatha-swamiji-station-hosahalli
+  name: Sri Balagangadharanatha Swamiji Station, Hosahalli
+  display: Hosahalli
+  aliases:
+  - Hosahalli
+  - Balagangadharanatha Swamiji
+  codes:
+  - HSLI
+  lines:
+  - purple
+  lat: 12.97429
+  lon: 77.54562
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: sri-sathya-sai-hospital
+  name: Sri Sathya Sai Hospital
+  display: Sai Hospital
+  aliases:
+  - Sathya Sai Hospital
+  - Sri Sathya Sai
+  codes:
+  - SSHP
+  lines:
+  - purple
+  lat: 12.98119
+  lon: 77.72754
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: srirampura
+  name: Srirampura
+  display: Srirampura
+  aliases: []
+  codes:
+  - SPRU
+  lines:
+  - green
+  lat: 12.99653
+  lon: 77.5632
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: swami-vivekananda-road
+  name: Swami Vivekananda Road
+  display: SV Road
+  aliases:
+  - SV Road
+  - Swami Vivekananda Road
+  codes:
+  - SVRD
+  lines:
+  - purple
+  lat: 12.98593
+  lon: 77.6449
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: thalaghattapura
+  name: Thalaghattapura
+  display: Thalaghattapura
+  aliases:
+  - Thalghattapura
+  codes:
+  - TGTP
+  lines:
+  - green
+  lat: 12.87141
+  lon: 77.5384
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: trinity
+  name: Trinity
+  display: Trinity
+  aliases: []
+  codes:
+  - TTY
+  lines:
+  - purple
+  lat: 12.97302
+  lon: 77.61702
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: vajarahalli
+  name: Vajarahalli
+  display: Vajarahalli
+  aliases: []
+  codes:
+  - VJRH
+  lines:
+  - green
+  lat: 12.87744
+  lon: 77.54474
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: vijayanagar
+  name: Vijayanagar
+  display: Vijayanagar
+  aliases: []
+  codes:
+  - VJN
+  - VJNR
+  lines:
+  - purple
+  lat: 12.97096
+  lon: 77.5374
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_whitefield-kadugodi:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: whitefield-kadugodi
+  name: Whitefield (Kadugodi)
+  display: Whitefield
+  aliases:
+  - Whitefield
+  - Kadugodi
+  codes:
+  - WHTM
+  lines:
+  - purple
+  lat: 12.99574
+  lon: 77.75795
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    purple:
+      towards_challaghatta:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: yelachenahalli
+  name: Yelachenahalli
+  display: Yelachenahalli
+  aliases:
+  - Puttenahalli
+  codes:
+  - PUTH
+  lines:
+  - green
+  lat: 12.89605
+  lon: 77.57012
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+- id: yeshwantpur
+  name: Yeshwantpur
+  display: Yeshwantpur
+  aliases:
+  - Yeshwanthpur
+  codes:
+  - YPM
+  lines:
+  - green
+  lat: 13.02327
+  lon: 77.54988
+  geo_confidence: verified
+  geo_source: https://overpass-api.de/api/interpreter (OSM nodes station=subway, network=Namma Metro)
+  status: operational
+  platforms:
+    green:
+      towards_madavara:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
+      towards_silk-institute:
+        number: null
+        confidence: unknown
+        source: null
+        note: Platform number not published in sources found; check the station display.
