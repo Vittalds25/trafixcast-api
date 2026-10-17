@@ -51,7 +51,7 @@ def ev_usage(
         out["battery_after_pct_p80"] = max(0, round(remaining80 / effective * 100))
     if remaining80 < max(c["safety_buffer_km"], effective * c["safety_buffer_percent"] / 100):
         out["warning"] = (
-            "This trip may not be completable on the current charge. Consider charging first."
+            "This trip may not be possible on the current charge. Consider charging first."
             if remaining80 < 0 else
             "Range after this trip may be low. Consider charging first."
         )
