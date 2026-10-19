@@ -1,4 +1,4 @@
-"""Road vs metro for one trip: the road estimate (service.py) and the metro plan (metro/planner.py) side by side, with a
+﻿"""Road vs metro for one trip: the road estimate (service.py) and the metro plan (metro/planner.py) side by side, with a
 plain verdict. Costs are indicative: fuel only for the road, ticket price only for the metro. Nothing here is live."""
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date as Date
@@ -7,6 +7,8 @@ from typing import Literal
 
 from fastapi import HTTPException
 
+from app.bus import planner as bus_planner
+from app.bus.data import get_bus
 from app.metro import planner
 from app.metro.data import engine, get_net
 from app.schemas import EstimateRequest
@@ -69,6 +71,34 @@ def _route_summary(route: dict) -> str:
         nxt = legs[i + 1]
         s += f", change at {t['display']} for the {nxt['line_name']} towards {nxt['towards']}"
     return s
+
+
+def _bus_side(req, day: Date, slot_time: str) -> dict:
+    """The BMTC bus for the same trip, leaving at the road slot's time on the chosen day: the quickest ordinary or AC option, door to door with the
+    ride to the first stop and from the last (bus fares plus those), and the best ordinary and best AC side by side. Never raises."""
+    out = {"available": False, "reason": NOT_BENGALURU, "best": None, "ordinary": None, "ac": None, "cost_note": ""}
+    if req.city != "bengaluru":
+        return out
+    try:
+        bus = get_bus()
+        (op, on), (dp, dn) = resolve(req.origin, req.city), resolve(req.dest, req.city)
+        plan = bus_planner.plan(bus, {"lat": op.lat, "lon": op.lon, "name": on}, {"lat": dp.lat, "lon": dp.lon, "name": dn},
+                                int(slot_time[:2]) * 60 + int(slot_time[3:]), day, req.last_mile)
+    except HTTPException as e:
+        return {**out, "reason": str(e.detail)}
+    except (OSError, KeyError, ValueError):
+        return {**out, "reason": "Bus data is not available right now."}
+    if not plan["options"]:
+        return {**out, "reason": plan["warnings"][-1] if plan["warnings"] else "No BMTC bus was found for this trip."}
+    o = plan["options"][0]
+    cost = o["total_cost_inr"]
+    return {"available": True, "reason": None, "ordinary": plan["compare"]["ordinary"], "ac": plan["compare"]["ac"],
+            "best": {"routes": " then ".join(lg["route"] for lg in o["legs"]), "kind": "ac" if o["all_ac"] else "ordinary" if o["all_ordinary"] else "mixed",
+                     "time": o["legs"][0]["board_time"], "door_to_door_min": {"lo": o["total_min"], "hi": o["total_min"]}, "fare_inr": o["fare_inr"],
+                     "cost_inr": cost, "changes": len(o["legs"]) - 1, "crowd": o["crowd"], "next_buses": o["legs"][0]["next_buses"],
+                     "wait_min": o["legs"][0]["wait_min"]},
+            "cost_note": "Bus fares from the BMTC app data plus an estimated walk, bike taxi or auto to the first stop and from the last. Scheduled times, not live. "
+                         "Bus crowd levels are a guess.", "warnings": plan["warnings"]}
 
 
 def compare(req: CompareRequest, providers, now: datetime | None = None) -> dict:
@@ -235,9 +265,48 @@ def compare(req: CompareRequest, providers, now: datetime | None = None) -> dict
         verdict["reasons"] = [metro["reason"]]
         verdict["basis"] = "The metro could not be compared for this trip, so only the road estimate is shown."
 
+    # ---- the bus joins the race: all available modes are ranked on the same generalised minutes (time, money at the value of time, crowding)
+    bus_side = _bus_side(req, d, r_slot["time"])
+    if bus_side["available"]:
+        b = bus_side["best"]
+        cands = {"road": (r_min, r_inr, None)}
+        if m_slot is not None:
+            cands["metro"] = (m_min, m_inr, lvl)
+        cands["bus"] = (b["door_to_door_min"]["lo"], _mid(b["cost_inr"]["lo"], b["cost_inr"]["hi"]) if b["cost_inr"] else None, b["crowd"]["level"])
+        money = all(c[1] is not None for c in cands.values())
+        g = {k: _gen(c[0], c[1] if money else None, c[2], cfg) for k, c in cands.items()}
+        order = sorted(g, key=g.get)
+        tie = len(order) > 1 and abs(g[order[0]] - g[order[1]]) < cfg["tie_pct"] / 100 * min(g[order[0]], g[order[1]])
+        pick = "tie" if tie else order[0]
+        rs = lambda c: f"Rs {c['lo']}" if c["lo"] == c["hi"] else f"Rs {c['lo']} to {c['hi']}"  # noqa: E731
+        lines = [f"By road about {round(r_min)} min" + (f" and about Rs {round(r_inr)} in fuel" if money else "")]
+        if m_slot is not None:
+            lines.append(f"By metro about {round(m_min)} min and about Rs {round(m_inr)} with the rides to and from the stations" if money else f"By metro about {round(m_min)} min")
+        lines.append(f"By bus ({b['routes']}) about {b['door_to_door_min']['lo']} min" + (f" and about {rs(b['cost_inr'])} with the rides to and from the stops" if money else ""))
+        if lvl:
+            lines.append(SEAT_WORDS[lvl])
+        lines.append(f"The bus crowd is our guess: {b['crowd']['label'].lower()}")
+        if road["umbrella"] or (m_slot is not None and metro["best"]["umbrella"]):
+            lines.append("We predict rain around this time, so please carry an umbrella")
+        bus_line = lines[2 if m_slot is not None else 1]
+        if "bus" in order[:2]:  # the bus wins or is a close second: the road-and-metro reasons no longer explain the pick, so give the three-way picture
+            verdict["reasons"] = lines[:5]
+        elif len(verdict["reasons"]) < 4:  # otherwise keep the road-and-metro reasons and add one line about the bus
+            verdict["reasons"] = verdict["reasons"] + [bus_line]
+        verdict["pick"] = pick
+        verdict["headline"] = {"metro": "Take the metro", "road": VEHICLE_HEADLINE[req.vehicle], "bus": f"Take the bus ({b['routes']})",
+                               "tie": "It depends on what matters to you: time, money or a seat"}[pick]
+        if pick != "tie" and len(order) > 1:
+            nxt = cands[order[1]]
+            verdict["saves_min"] = max(0, round(abs(nxt[0] - cands[pick][0])))
+            verdict["saves_inr"] = max(0, round(abs(nxt[1] - cands[pick][1]))) if money else None
+        verdict["basis"] = (f"We compare door-to-door time, cost and crowding across road, metro and bus. Time is valued at Rs {cfg['value_of_time_inr_per_min']:g} per minute "
+                            f"and a packed train or bus counts as {cfg['crowd_penalty_min']['packed']} extra minutes."
+                            + ("" if money else " Cost is left out because one side has no rupee figure."))
+
     warnings = list(est["warnings"])
     if road["cost_note"].startswith("Add your"):
         warnings.append("No road cost is shown because no fuel type and mileage were given.")
     return {"origin": est["origin"], "dest": est["dest"], "distance_km": est["distance_km"], "date": chosen, "weekday": d.strftime("%a"),
-            "label": _label(d), "days_available": days_available, "road": road, "metro": metro, "verdict": verdict,
+            "label": _label(d), "days_available": days_available, "road": road, "metro": metro, "bus": bus_side, "verdict": verdict,
             "same_time": same_time, "warnings": warnings, "disclaimer": DISCLAIMER, "attribution": planner.ATTRIBUTION}
