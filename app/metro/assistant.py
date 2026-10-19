@@ -351,7 +351,13 @@ def _sentence(res: dict) -> str:
             + (f" and about {rs(rb['cost_inr'])} in fuel (an estimate)" if rb.get("cost_inr") else ""))
     metro = (f"by metro about {chat._span(mb['door_to_door_min']['lo'], mb['door_to_door_min']['hi'])} door to door and about {rs(mb['cost_inr'])}"
              " including the ride to and from the station (an estimate)")
-    return f"{v['headline']}. {road[0].upper() + road[1:]}; {metro}. " + (v["reasons"][0] + "." if v["reasons"] else "")
+    bus = res.get("bus") or {}
+    bus_bit = ""
+    if bus.get("available"):
+        bb = bus["best"]
+        bus_bit = (f" By bus ({bb['routes']}) about {chat._span(bb['door_to_door_min']['lo'], bb['door_to_door_min']['hi'])}"
+                   + (f" and about {rs(bb['cost_inr'])} with the ride to and from the stops (an estimate)" if bb["cost_inr"] else "") + f"; our crowd guess is {bb['crowd']['label'].lower()}.")
+    return f"{v['headline']}. {road[0].upper() + road[1:]}; {metro}.{bus_bit} " + (v["reasons"][0] + "." if v["reasons"] else "")
 
 
 def compare_extra(origin, dest, vehicle: str, lo_min: int, hi_min: int, day, providers, now: datetime) -> dict | None:
