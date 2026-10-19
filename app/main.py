@@ -7,6 +7,7 @@ from slowapi.errors import RateLimitExceeded
 
 from app.api import router
 from app.compare_api import router as compare_router
+from app.bus_api import router as bus_router
 from app.config import get_settings
 from app.limits import limiter
 from app.metro_api import router as metro_router
@@ -21,6 +22,11 @@ async def lifespan(app: FastAPI):
     try:
         metro_warm()  # load the metro files and the areas table now, not on the first visitor's request
     except Exception:  # noqa: BLE001  the metro endpoints answer 503 on their own if the data is broken
+        pass
+    try:
+        from app.bus.data import get_bus
+        get_bus()  # the bus timetable, parsed once now
+    except Exception:  # noqa: BLE001  /v1/bus/plan answers 503 on its own if the data is missing
         pass
     for city in ("bengaluru", "chennai", "hyderabad", "delhi", "mumbai", "pune"):
         localplaces._index(city)  # the place suggestions, parsed once now; a missing file is simply an empty list
@@ -76,6 +82,7 @@ app.add_middleware(
 app.include_router(router)
 app.include_router(metro_router)
 app.include_router(compare_router)
+app.include_router(bus_router)
 
 
 @app.middleware("http")

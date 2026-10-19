@@ -39,7 +39,7 @@ class ChatTurn(BaseModel):
 class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     city: str = Field(default="bengaluru", max_length=20)
-    mode: Literal["road", "metro", "compare"] = "road"  # metro and compare: the Namma Metro assistant (app/metro/assistant.py)
+    mode: Literal["road", "metro", "compare", "bus"] = "road"  # metro and compare: the Namma Metro assistant (app/metro/assistant.py); bus: app/bus/assistant.py
     messages: list[ChatTurn] = Field(min_length=1, max_length=MAX_TURNS)
 
     @model_validator(mode="after")
@@ -448,7 +448,11 @@ class _Answer:
 def _call(req: ChatRequest, now: datetime, followup: list | None = None) -> _Answer:
     s = get_settings()
     from app.metro import assistant  # imported here: the metro assistant imports this module
-    system, tools = ((assistant.system(now, req.mode), assistant.tools(req.mode)) if req.mode in ("metro", "compare") else (_system(req.city, now), TOOLS))
+    from app.bus import assistant as bus_assistant
+    if req.mode == "bus":
+        system, tools = bus_assistant.system(now), bus_assistant.TOOLS
+    else:
+        system, tools = ((assistant.system(now, req.mode), assistant.tools(req.mode)) if req.mode in ("metro", "compare") else (_system(req.city, now), TOOLS))
     transcript = "\n".join(f"[{t.role}] {t.content[:300] if t.role == 'assistant' else t.content}" for t in req.messages)
     body = {
         "systemInstruction": {"parts": [{"text": system}]},
@@ -498,6 +502,9 @@ def reply(req: ChatRequest, providers, now: datetime | None = None) -> dict:
         r = _call(req, now)
     except httpx.HTTPError:
         raise HTTPException(503, UNAVAILABLE) from None
+    if req.mode == "bus":
+        from app.bus import assistant as bus_assistant
+        return bus_assistant.handle(req, r, providers, now)
     if req.mode in ("metro", "compare"):
         from app.metro import assistant
         return assistant.handle(req, r, providers, now)
