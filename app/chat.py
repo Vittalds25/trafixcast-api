@@ -66,7 +66,7 @@ Your only job is to help the user plan one trip. You answer ONLY by calling a to
 - plan_commute: when you have a start place, a destination and a time. Call it, and the system computes the real answer. Do not write the answer yourself and never state travel times.
 - reply_to_user: kind "ask" to request ONE missing detail (usually where they are starting from, or when), kind "info" for a short fact about Trafixcast, kind "refuse" for anything else.
 - check_rain: when the user asks whether it will rain (in their city, at a place, on a day or at a time). The system answers from its own weather forecast. Use plan_commute for trips; its result already shows rain.
-- After plan_commute or check_rain the system sends you the result. Then call reply_to_user with kind "result": one or two short sentences giving the best time and the range, and how it compares with the time the user asked for if that differs, and the assumption if you made one, plus a holiday only if the result shows it. Do not mention rain: the system adds any rain warning itself. Say a travel time of an hour or more in hours, like "1 hr 25 min", exactly as the result words it. Use only numbers that appear in the result. Describe only what the result contains: if its mode is "day", talk about that one day and do not mention other days or the week.
+- After plan_commute or check_rain the system sends you the result. Then call reply_to_user with kind "result": one or two short sentences giving the best time and the range, and how it compares with the time the user asked for if that differs, and the assumption if you made one, plus a holiday only if the result shows it. Do not mention rain: the system adds any rain warning itself. For trips in Bengaluru the system also adds a metro-or-road comparison (time, estimated cost, crowd) after your sentence, so never say the metro cannot be compared and do not write that comparison yourself. Say a travel time of an hour or more in hours, like "1 hr 25 min", exactly as the result words it. Use only numbers that appear in the result. Describe only what the result contains: if its mode is "day", talk about that one day and do not mention other days or the week.
 
 Rules:
 - Never assume or guess a place. The start and the destination must both be named by the user. If either is missing, ask for it with reply_to_user.
@@ -296,6 +296,8 @@ def _plan(inp: dict, default_city: str, providers, said: list[str], now: datetim
         "date": first["date"], "weekday": first["weekday"], "holiday": first["holiday"], "rain": first["rain"],
         "best": {"date": first["date"], **pick(top)}, "asked": asked, "window": [start, end],
         "vehicle": req.vehicle, "warnings": est["warnings"][-2:],
+        # read and removed in reply(): the same trip is compared with the metro (Bengaluru), on the day shown
+        "_cmp": {"city": city, "o": o, "d": d, "vehicle": req.vehicle, "lo": start * 60, "hi": end * 60, "day": day or date.fromisoformat(first["date"])},
     }
     if week:  # one quickest slot per day
         card["days"] = [{"date": x["date"], "weekday": x["weekday"], "holiday": x["holiday"], "rain": x["rain"],
@@ -510,7 +512,15 @@ def reply(req: ChatRequest, providers, now: datetime | None = None) -> dict:
                 text = f"{facts['rain_warning']} {text}"
             # a guessed spelling is always said out loud, even if the model left it out of its wording
             text = " ".join([text] + [f for f in facts["corrections"] if f.rsplit(" as ", 1)[-1].rstrip(".") not in text])
-        return {"reply": text, "card": card}
+        cmp_in = card.pop("_cmp", None) if card else None
+        out = {"reply": text, "card": card}
+        if cmp_in and cmp_in["city"] == "bengaluru":  # a planned Bengaluru trip always comes with the metro comparison, unasked
+            from app.metro import assistant
+            x = assistant.compare_extra(cmp_in["o"], cmp_in["d"], cmp_in["vehicle"], cmp_in["lo"], cmp_in["hi"], cmp_in["day"], providers, now)
+            if x:
+                out["reply"] = f"{text} Metro or road for this trip: {x['text']}"
+                out["compare_card"] = x["card"]
+        return out
     if call.name == "check_rain" and isinstance(call.input, dict):
         text, card, facts = _rain(call.input, req.city, providers, [m.content for m in req.messages if m.role == "user"], now)
         if facts:
