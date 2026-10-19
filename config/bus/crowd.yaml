@@ -1,0 +1,134 @@
+﻿# Bus crowd GUESS. BMTC publishes no occupancy, so every number here is a judgement call, not a measurement. Edit here to tune; nothing else changes.
+#
+# The idea, as a funnel: Bengaluru has roughly 1.3 crore people (estimates vary). BMTC itself reports tens of lakhs of passenger trips a day (the published
+# figures conflict: about 33 to 48 lakh over recent years). We split those bus trips into kinds of riders ("segments"), each with a share of all bus trips,
+# a daily rhythm (when they travel) and the places they travel to or from (stop-name words). For a bus boarded at a given hour we add up the segments that
+# are travelling then and that this route serves; that is the demand. Demand, the kind of bus, and how many buses an hour run give the crowd band.
+#
+# score = scale x sum over segments(share x hour x route_fit [x shakti, ordinary only]) x class_factor x feeder x supply ; the first band it is below.
+scale: 2.3
+class_factor:            # how full buses of this kind run compared with ordinary (2017-20 audit: load factor about 68-76% ordinary, 44-55% premium)
+  ordinary: 0.90
+  vajra: 0.50
+  vayu_vajra: 0.35
+feeder_factor: 0.80      # metro feeder (MF) routes are short and lighter
+supply:                  # buses an hour on the route around the boarding time; used only when the route lists enough departures
+  neutral_per_hour: 6
+  exponent: 0.4
+  min_factor: 0.7
+  max_factor: 1.4
+  min_departures_listed: 6
+bands:                   # (upper limit of score, level)
+  - [0.35, low]
+  - [0.65, moderate]
+  - [0.95, high]
+  - [99, packed]
+
+# Each segment: share of all bus trips (they add to 1), hour windows [from, to, weight] (weight 0 to 1; base outside them), route fit from stop-name
+# words (fit = base + per_hit x matching stops, at most cap; segments with no words fit every route equally), and how an AC bus or an ordinary bus
+# changes who is aboard (ac: a price filter; shakti: women ride free on ordinary buses).
+segments:
+  it:
+    label: IT and tech-park commuters
+    where: Whitefield, ITPL, Marathahalli, Bellandur, Koramangala, HSR, Silk Board, Electronic City, Manyata, Outer Ring Road
+    share: 0.18
+    base_hour: 0.05
+    windows: [[7, 8, 0.6], [8, 11, 1.0], [16, 17, 0.6], [17, 21, 1.0], [21, 22, 0.4]]
+    words: [whitefield, itpl, kadugodi, marathahalli, bellandur, sarjapur, koramangala, hsr, silk board, electronic city, manyata, hebbal, outer ring, kundalahalli, brookefield, domlur, embassy, kadubeesanahalli, devarabisanahalli, tech park, mahadevapura, kr puram]
+    fit: {base: 0.5, per_hit: 0.25, cap: 1.8}
+    ac: 1.8
+    shakti: 1.0
+  office:
+    label: Other office, shop and government workers
+    where: Majestic, MG Road, Shivajinagar, KR Market, Jayanagar, Malleshwaram, Rajajinagar
+    share: 0.17
+    base_hour: 0.05
+    windows: [[7, 8, 0.5], [8, 11, 0.9], [11, 16, 0.3], [16, 17, 0.6], [17, 20, 0.9]]
+    words: [majestic, kempegowda bus station, kr market, city market, shivajinagar, shanthinagara, mg road, vidhana soudha, high court, town hall, jayanagar, malleshwaram, rajajinagar, richmond, commercial street, banashankari, yeshwantpur]
+    fit: {base: 0.6, per_hit: 0.25, cap: 1.8}
+    ac: 1.4
+    shakti: 1.1
+  factory:
+    label: Factory and shift workers
+    where: Peenya, Bommasandra, Jigani, Nelamangala, Hosur Road industrial belt
+    share: 0.07
+    base_hour: 0.1
+    windows: [[5, 7, 0.9], [13, 15, 0.8], [21, 23, 0.7]]
+    words: [peenya, bommasandra, jigani, nelamangala, dabaspet, harohalli, attibele, sompura, hosur road]
+    fit: {base: 0.4, per_hit: 0.4, cap: 1.8}
+    ac: 0.1
+    shakti: 1.0
+  students:
+    label: Students (school and college)
+    where: every route; more near colleges and universities
+    share: 0.14
+    base_hour: 0.05
+    windows: [[6, 7, 0.3], [7, 9, 1.0], [9, 13, 0.2], [13, 14, 0.5], [15, 17, 0.9]]
+    words: [college, university, school, iisc, rvce, bmsit, christ, nimhans, institute]
+    fit: {base: 0.9, per_hit: 0.2, cap: 1.5}
+    ac: 0.2
+    shakti: 1.15
+  domestic:
+    label: Domestic, construction and daily-wage workers
+    where: every route
+    share: 0.13
+    base_hour: 0.05
+    windows: [[5, 6, 0.5], [6, 10, 0.9], [10, 16, 0.2], [16, 20, 0.8]]
+    words: []
+    fit: {base: 1.0, per_hit: 0, cap: 1.0}
+    ac: 0.1
+    shakti: 1.25
+  errands:
+    label: Shoppers and people running errands home
+    where: markets, malls and bazaars
+    share: 0.14
+    base_hour: 0.1
+    windows: [[9, 11, 0.5], [11, 17, 0.7], [17, 20, 0.6]]
+    words: [market, mall, bazaar, mantri, forum, orion, garuda, shopping, kr market, gandhi bazaar]
+    fit: {base: 0.8, per_hit: 0.25, cap: 1.6}
+    ac: 0.5
+    shakti: 1.2
+  seniors:
+    label: Seniors and hospital visits
+    where: hospitals and clinics
+    share: 0.07
+    base_hour: 0.05
+    windows: [[8, 10, 0.5], [10, 16, 0.7]]
+    words: [hospital, clinic, nimhans, victoria, jayadeva, manipal, narayana, bowring, kidwai, medical, aster, fortis]
+    fit: {base: 0.8, per_hit: 0.3, cap: 1.6}
+    ac: 0.4
+    shakti: 1.1
+  airport:
+    label: Airport and long-distance travellers
+    where: airport and bus-station routes
+    share: 0.03
+    base_hour: 0.5
+    windows: [[0, 24, 0.5]]
+    words: [airport, devanahalli, bial]
+    fit: {base: 0.1, per_hit: 1.5, cap: 3.0}
+    ac: 2.0
+    shakti: 1.0
+  leisure:
+    label: Leisure, temples and evening outings
+    where: malls, parks, temples, restaurants
+    share: 0.07
+    base_hour: 0.1
+    windows: [[11, 14, 0.4], [17, 22, 0.8]]
+    words: [mall, lalbagh, cubbon, temple, iskcon, church street, brigade road, ub city, cinema, forum, orion, bannerghatta, nandi]
+    fit: {base: 0.8, per_hit: 0.25, cap: 1.6}
+    ac: 0.8
+    shakti: 1.1
+
+
+# How much of each kind of rider is out on a Saturday, a Sunday or a public holiday, compared with a weekday (1.0). Office, IT, school and factory commuting falls;
+# shopping, errands and leisure rise. Long-distance and airport travel is left unchanged: we have no evidence either way (festival weekends can raise it).
+day_factor:
+  it:       {weekday: 1.0, saturday: 0.35, sunday: 0.10, holiday: 0.10}
+  office:   {weekday: 1.0, saturday: 0.50, sunday: 0.15, holiday: 0.15}
+  factory:  {weekday: 1.0, saturday: 0.80, sunday: 0.50, holiday: 0.40}
+  students: {weekday: 1.0, saturday: 0.40, sunday: 0.05, holiday: 0.05}
+  domestic: {weekday: 1.0, saturday: 0.90, sunday: 0.60, holiday: 0.50}
+  errands:  {weekday: 1.0, saturday: 1.30, sunday: 1.40, holiday: 1.40}
+  seniors:  {weekday: 1.0, saturday: 0.90, sunday: 0.60, holiday: 0.60}
+  airport:  {weekday: 1.0, saturday: 1.00, sunday: 1.00, holiday: 1.00}
+  leisure:  {weekday: 1.0, saturday: 1.50, sunday: 1.60, holiday: 1.60}
