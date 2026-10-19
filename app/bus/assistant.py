@@ -90,7 +90,7 @@ def _text(plan: dict, shakti: bool) -> str:
     if shakti and best["all_ordinary"]:
         total = {"lo": lm["cost_inr"]["lo"], "hi": lm["cost_inr"]["hi"]}
     out.append(f"To the stop it is {way(lm['origin'])} and from the drop stop {way(lm['dest'])}" +
-               (f"; in all about Rs {total['lo']} to {total['hi']} door to door (an estimate)." if total else "."))
+               (f"; in all about Rs {total['lo'] if total['lo'] == total['hi'] else str(total['lo']) + ' to ' + str(total['hi'])} door to door (an estimate)." if total else "."))
     cmp = plan["compare"]
     if cmp["ordinary"] and cmp["ac"]:
         o, a = cmp["ordinary"], cmp["ac"]
