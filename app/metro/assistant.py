@@ -11,6 +11,7 @@ from pydantic import ValidationError
 from app import chat, links
 from app.metro import planner
 from app.metro.data import engine, get_net
+from app.schemas import Place
 
 REFUSAL = "I can only help with Namma Metro trips here. Tell me where you are starting, where you are going and when."
 NOT_BENGALURU = "The metro planner covers Bengaluru's Namma Metro only."
@@ -41,7 +42,7 @@ You answer ONLY by calling a tool, never with plain text:
 - nearest_station: when the user asks for the metro station nearest to a place.
 - book_ticket: when the user asks how to book or buy a metro ticket or wants to book. Trafixcast does not sell tickets: this shows the official Namma Metro WhatsApp ticketing. Pass origin and destination only if the user named them.
 {"- compare_trip: when the user asks whether the metro, or driving, riding a bike or a scooter, is better, cheaper or faster for a trip, or wants the two compared. Needs a start and a destination; vehicle is car, bike or scooter only if the user said so." + chr(10) if compare else ""}- reply_to_user: kind "ask" for ONE missing detail (where they start, where they go), kind "info" for a short fact about Trafixcast metro, kind "refuse" for anything else.
-- After a tool result, call reply_to_user with kind "result": one or two short sentences. Use only numbers that appear in the result. Costs are estimates: say "about Rs N" and "estimate", never as exact prices. If the result says umbrella is true, mention carrying an umbrella; never state rain amounts or any weather the result does not give. Say seat chances in the result's own words. Do not mention a platform number unless the result gives one. Never write a web link or a phone number. Describe only what the result contains.
+- After a tool result, call reply_to_user with kind "result": one or two short sentences. Use only numbers that appear in the result. Costs are estimates: say "about Rs N" and "estimate", never as exact prices. If the result says umbrella is true, mention carrying an umbrella; never state rain amounts or any weather the result does not give. Say seat chances in the result's own words. Do not mention a platform number unless the result gives one. Never write a web link or a phone number. Describe only what the result contains. After a metro_plan the system adds a comparison with driving a car after your sentence, so do not write that comparison yourself.
 
 Rules:
 - Never guess a place. The start and the destination must both be named by the user.
@@ -219,7 +220,7 @@ def _plan(inp: dict, net, providers, said: list[str], now: datetime):
     if first["rain_level"] != "none":
         facts["rain"] = first["rain_level"]
         text = f"Heads up: it might rain ({first['rain_level']}). Trains still run, but stations may be busier. {text}"
-    card = {"type": "metro_plan", "plan": plan}
+    card = {"type": "metro_plan", "plan": plan, "_cmp": {"o": o, "d": d, "lo": lo, "hi": hi, "day": day}}  # "_cmp" is read and removed in handle
     return text, card, facts
 
 
@@ -332,16 +333,40 @@ def _compare(inp: dict, providers, said: list[str], now: datetime):
              "road_cost_note": road.get("cost_assumption"), "note": "Estimates from predicted traffic, past ridership and standard tariffs, not live."}
     if metro["available"]:
         mb = metro["best"]
-        metro_bit = (f"by metro about {chat._span(mb['door_to_door_min']['lo'], mb['door_to_door_min']['hi'])} door to door and about {rs(mb['cost_inr'])}"
-                     " including the ride to and from the station (an estimate)")
         facts.update(metro_minutes=chat._span(mb["door_to_door_min"]["lo"], mb["door_to_door_min"]["hi"]), metro_fare_rupees=mb.get("fare_inr"),
                      metro_cost_rupees={"lo": mb["cost_inr"]["lo"], "hi": mb["cost_inr"]["hi"]}, seat_chance=engine()["seat_phrase"][mb["crowd"]["level"]] if mb.get("crowd") else None,
                      umbrella=bool(mb.get("umbrella")))
-        text = f"{v['headline']}. {road_bit[0].upper() + road_bit[1:]}; {metro_bit}. " + (v["reasons"][0] + "." if v["reasons"] else "")
+        text = _sentence(res)
     else:
         facts["metro_unavailable"] = metro["reason"]
         text = f"{road_bit[0].upper() + road_bit[1:]}. {metro['reason']}"
     return text, {"type": "compare", "compare": res}, facts
+
+
+def _sentence(res: dict) -> str:
+    """The plain road-vs-metro sentence, from the comparison's own numbers (metro must be available)."""
+    v, rb, mb = res["verdict"], res["road"]["best"], res["metro"]["best"]
+    rs = lambda c: f"Rs {c['lo']}" if c["lo"] == c["hi"] else f"Rs {c['lo']} to {c['hi']}"
+    road = (f"by road about {chat._span(rb['total_min']['lo'], rb['total_min']['hi'])}"
+            + (f" and about {rs(rb['cost_inr'])} in fuel (an estimate)" if rb.get("cost_inr") else ""))
+    metro = (f"by metro about {chat._span(mb['door_to_door_min']['lo'], mb['door_to_door_min']['hi'])} door to door and about {rs(mb['cost_inr'])}"
+             " including the ride to and from the station (an estimate)")
+    return f"{v['headline']}. {road[0].upper() + road[1:]}; {metro}. " + (v["reasons"][0] + "." if v["reasons"] else "")
+
+
+def compare_extra(origin, dest, vehicle: str, lo_min: int, hi_min: int, day, providers, now: datetime) -> dict | None:
+    """Road vs metro for the trip the user just planned, added to a road or metro answer without being asked.
+    Returns {"text", "card"}, or None when the metro cannot be compared (the plain answer then stands alone)."""
+    from app import compare as cmp
+    hi = min(hi_min, lo_min + 6 * 60)  # the comparison looks at up to six hours of departures
+    try:
+        res = cmp.compare(cmp.CompareRequest(city="bengaluru", origin=origin, dest=dest, window_start_hour=lo_min // 60,
+                                             window_end_hour=min(-(-hi // 60), 24), vehicle=vehicle, date=day), providers, now)
+    except (HTTPException, ValidationError, OSError, KeyError, ValueError):
+        return None
+    if not res["metro"]["available"]:
+        return None
+    return {"text": _sentence(res), "card": {"type": "compare", "compare": res}}
 
 
 def handle(req, first, providers, now: datetime) -> dict:
@@ -373,10 +398,22 @@ def handle(req, first, providers, now: datetime) -> dict:
         text, card, facts = _station(call.input, net, providers, said, now)
     else:
         text, card, facts = _nearest(call.input, net, said)
+    cmp_in = card.pop("_cmp", None) if card else None
     if facts:
         worded = chat._worded(req, now, first, call, facts)
         if worded and _ok(worded, facts):
             text = worded
             if facts.get("umbrella") and "umbrella" not in text.lower():  # the advice is never left out
                 text = f"{text} {facts['umbrella_note']}"
-    return {"reply": text, "card": card}
+    out = {"reply": text, "card": card}
+    if cmp_in:  # a planned metro trip always comes with the road comparison, unasked (a car unless the user said otherwise)
+        try:
+            road = [Place(**({"lat": net.stations[r["station_id"]]["lat"], "lon": net.stations[r["station_id"]]["lon"]} if "station_id" in r
+                            else {"lat": r["lat"], "lon": r["lon"]})) for r in (cmp_in["o"], cmp_in["d"])]
+            x = compare_extra(road[0], road[1], "car", cmp_in["lo"], cmp_in["hi"], cmp_in["day"], providers, now)
+        except (ValidationError, KeyError):
+            x = None
+        if x:
+            out["reply"] = f"{text} Against driving a car for the same trip: {x['text']}"
+            out["compare_card"] = x["card"]
+    return out
