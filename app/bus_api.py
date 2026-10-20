@@ -1,16 +1,17 @@
-"""Bus endpoint: POST /v1/bus/plan. BMTC buses between two places: which bus, when, where to change, the fare, ordinary against AC.
+﻿"""Bus endpoint: POST /v1/bus/plan. BMTC buses between two places: which bus, when, where to change, the fare, ordinary against AC.
 Scheduled data from the BMTC app feed, never live."""
 import re
 from datetime import date as Date
 from datetime import datetime
 from typing import Literal
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.bus import planner
 from app.bus.data import get_bus
 from app.limits import limiter
+from app.providers import get_providers
 from app.schemas import Place
 from app.service import IST, resolve
 
@@ -29,7 +30,7 @@ class BusPlanRequest(BaseModel):
 
 @router.post("/plan")
 @limiter.limit("30/minute;300/hour")
-def bus_plan(request: Request, body: BusPlanRequest):
+def bus_plan(request: Request, body: BusPlanRequest, providers=Depends(get_providers)):
     try:
         bus = get_bus()
     except (OSError, KeyError, ValueError):
@@ -46,4 +47,4 @@ def bus_plan(request: Request, body: BusPlanRequest):
     if body.date is not None and not 0 <= (body.date - today).days <= 6:
         raise HTTPException(422, "I can only look up to 7 days ahead.")
     (op, on), (dp, dn) = resolve(body.origin), resolve(body.dest)
-    return planner.plan(bus, {"lat": op.lat, "lon": op.lon, "name": on}, {"lat": dp.lat, "lon": dp.lon, "name": dn}, depart, body.date or today, body.last_mile)
+    return planner.plan(bus, {"lat": op.lat, "lon": op.lon, "name": on}, {"lat": dp.lat, "lon": dp.lon, "name": dn}, depart, body.date or today, body.last_mile, providers)

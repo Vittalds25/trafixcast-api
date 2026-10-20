@@ -73,7 +73,7 @@ def _route_summary(route: dict) -> str:
     return s
 
 
-def _bus_side(req, day: Date, slot_time: str) -> dict:
+def _bus_side(req, day: Date, slot_time: str, providers=None) -> dict:
     """The BMTC bus for the same trip, leaving at the road slot's time on the chosen day: the quickest ordinary or AC option, door to door with the
     ride to the first stop and from the last (bus fares plus those), and the best ordinary and best AC side by side. Never raises."""
     out = {"available": False, "reason": NOT_BENGALURU, "best": None, "ordinary": None, "ac": None, "cost_note": ""}
@@ -83,7 +83,7 @@ def _bus_side(req, day: Date, slot_time: str) -> dict:
         bus = get_bus()
         (op, on), (dp, dn) = resolve(req.origin, req.city), resolve(req.dest, req.city)
         plan = bus_planner.plan(bus, {"lat": op.lat, "lon": op.lon, "name": on}, {"lat": dp.lat, "lon": dp.lon, "name": dn},
-                                int(slot_time[:2]) * 60 + int(slot_time[3:]), day, req.last_mile)
+                                int(slot_time[:2]) * 60 + int(slot_time[3:]), day, req.last_mile, providers)
     except HTTPException as e:
         return {**out, "reason": str(e.detail)}
     except (OSError, KeyError, ValueError):
@@ -266,7 +266,7 @@ def compare(req: CompareRequest, providers, now: datetime | None = None) -> dict
         verdict["basis"] = "The metro could not be compared for this trip, so only the road estimate is shown."
 
     # ---- the bus joins the race: all available modes are ranked on the same generalised minutes (time, money at the value of time, crowding)
-    bus_side = _bus_side(req, d, r_slot["time"])
+    bus_side = _bus_side(req, d, r_slot["time"], providers)
     if bus_side["available"]:
         b = bus_side["best"]
         cands = {"road": (r_min, r_inr, None)}
