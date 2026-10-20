@@ -1,4 +1,4 @@
-"""Metro mode of the Trafi assistant. Same design as the road chat (see app/chat.py): the model never writes free text to
+﻿"""Metro mode of the Trafi assistant. Same design as the road chat (see app/chat.py): the model never writes free text to
 the user, it only calls one of metro_plan, station_info, nearest_station or reply_to_user. Station and place names are
 resolved here on the server (never trust coordinates from the model), the answer and the card come from the real metro
 engine, and the model may only re-word a result using numbers that appear in it."""
@@ -331,6 +331,10 @@ def _compare(inp: dict, providers, said: list[str], now: datetime):
     facts = {"mode": "compare", "from": res["origin"], "to": res["dest"], "day": res["label"], "pick": v["headline"], "reasons": v["reasons"][:4],
              "road_minutes": chat._span(rb["total_min"]["lo"], rb["total_min"]["hi"]), "road_cost_rupees": ({"lo": rb["cost_inr"]["lo"], "hi": rb["cost_inr"]["hi"]} if rb.get("cost_inr") else None),
              "road_cost_note": road.get("cost_assumption"), "note": "Estimates from predicted traffic, past ridership and standard tariffs, not live."}
+    if res.get("bus", {}).get("available"):
+        bb = res["bus"]["best"]
+        facts.update(bus_routes=bb["routes"], bus_minutes=chat._span(bb["door_to_door_min"]["lo"], bb["door_to_door_min"]["hi"]),
+                     bus_cost_rupees=bb["cost_inr"], bus_crowd_guess=bb["crowd"]["label"])
     if metro["available"]:
         mb = metro["best"]
         facts.update(metro_minutes=chat._span(mb["door_to_door_min"]["lo"], mb["door_to_door_min"]["hi"]), metro_fare_rupees=mb.get("fare_inr"),
@@ -343,6 +347,17 @@ def _compare(inp: dict, providers, said: list[str], now: datetime):
     return text, {"type": "compare", "compare": res}, facts
 
 
+def _bus_bit(res: dict) -> str:
+    """The BMTC bus part of a comparison, as a sentence (empty when the bus is not available)."""
+    bus = res.get("bus") or {}
+    if not bus.get("available"):
+        return ""
+    bb = bus["best"]
+    rs = lambda c: f"Rs {c['lo']}" if c["lo"] == c["hi"] else f"Rs {c['lo']} to {c['hi']}"  # noqa: E731
+    return (f" By bus ({bb['routes']}) about {chat._span(bb['door_to_door_min']['lo'], bb['door_to_door_min']['hi'])}"
+            + (f" and about {rs(bb['cost_inr'])} with the ride to and from the stops (an estimate)" if bb["cost_inr"] else "") + f"; our crowd guess is {bb['crowd']['label'].lower()}.")
+
+
 def _sentence(res: dict) -> str:
     """The plain road-vs-metro sentence, from the comparison's own numbers (metro must be available)."""
     v, rb, mb = res["verdict"], res["road"]["best"], res["metro"]["best"]
@@ -351,12 +366,7 @@ def _sentence(res: dict) -> str:
             + (f" and about {rs(rb['cost_inr'])} in fuel (an estimate)" if rb.get("cost_inr") else ""))
     metro = (f"by metro about {chat._span(mb['door_to_door_min']['lo'], mb['door_to_door_min']['hi'])} door to door and about {rs(mb['cost_inr'])}"
              " including the ride to and from the station (an estimate)")
-    bus = res.get("bus") or {}
-    bus_bit = ""
-    if bus.get("available"):
-        bb = bus["best"]
-        bus_bit = (f" By bus ({bb['routes']}) about {chat._span(bb['door_to_door_min']['lo'], bb['door_to_door_min']['hi'])}"
-                   + (f" and about {rs(bb['cost_inr'])} with the ride to and from the stops (an estimate)" if bb["cost_inr"] else "") + f"; our crowd guess is {bb['crowd']['label'].lower()}.")
+    bus_bit = _bus_bit(res)
     return f"{v['headline']}. {road[0].upper() + road[1:]}; {metro}.{bus_bit} " + (v["reasons"][0] + "." if v["reasons"] else "")
 
 
@@ -411,6 +421,8 @@ def handle(req, first, providers, now: datetime) -> dict:
             text = worded
             if facts.get("umbrella") and "umbrella" not in text.lower():  # the advice is never left out
                 text = f"{text} {facts['umbrella_note']}"
+            if card and card.get("type") == "compare" and "bus" not in text.lower():  # the bus is never left out of a comparison
+                text = text + _bus_bit(card["compare"])
     out = {"reply": text, "card": card}
     if cmp_in:  # a planned metro trip always comes with the road comparison, unasked (a car unless the user said otherwise)
         try:
