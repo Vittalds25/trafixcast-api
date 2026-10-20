@@ -102,7 +102,7 @@ def _text(plan: dict, shakti: bool) -> str:
     return " ".join(out)
 
 
-def _plan(inp: dict, said: list[str], now: datetime):
+def _plan(inp: dict, said: list[str], now: datetime, providers=None):
     typed = " ".join(said)
     if not chat._said(inp.get("origin", ""), typed):
         return "Where are you starting from?", None
@@ -125,7 +125,7 @@ def _plan(inp: dict, said: list[str], now: datetime):
     try:
         (op, _), (dp, _) = resolve(o), resolve(d)
         plan = planner.plan(get_bus(), {"lat": op.lat, "lon": op.lon, "name": chat._clean(inp["origin"], 60) or "Start"},
-                            {"lat": dp.lat, "lon": dp.lon, "name": chat._clean(inp["destination"], 60) or "Destination"}, depart, day)
+                            {"lat": dp.lat, "lon": dp.lon, "name": chat._clean(inp["destination"], 60) or "Destination"}, depart, day, "best", providers)
     except HTTPException as err:
         return str(err.detail), None
     except (OSError, KeyError, ValueError):
@@ -154,5 +154,5 @@ def handle(req, first, providers, now: datetime) -> dict:
         return {"reply": text if kind in ("ask", "info") and ok else REFUSAL, "card": None}
     if call.name != "bus_plan":
         return {"reply": REFUSAL, "card": None}
-    text, card = _plan(call.input, said, now)
+    text, card = _plan(call.input, said, now, providers)
     return {"reply": text, "card": card}  # the plain answer already has every number and caveat, so the model does not re-word it

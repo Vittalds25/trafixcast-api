@@ -30,9 +30,21 @@ class Bus:
         for pi, p in enumerate(self.patterns):
             for pos, s in enumerate(p[3]):
                 self.stop_pats[s].append((pi, pos))
+        self._cum = {}
         self.grid = defaultdict(list)
         for i, s in enumerate(self.stops):
             self.grid[(int(s[1] / CELL), int(s[2] / CELL))].append(i)
+
+    def cum_m(self, pi: int) -> list[float]:
+        """Metres along pattern pi (stop to stop in straight lines) from its first stop to each stop."""
+        c = self._cum.get(pi)
+        if c is None:
+            stops = self.patterns[pi][3]
+            c = [0.0]
+            for x in range(len(stops) - 1):
+                c.append(c[-1] + metres(*self.stops[stops[x]][1:3], *self.stops[stops[x + 1]][1:3]))
+            self._cum[pi] = c
+        return c
 
     def near(self, lat: float, lon: float, max_m: float, limit: int | None = None) -> list[tuple[float, int]]:
         """[(metres, stop index)] nearest first, within max_m (straight line)."""
