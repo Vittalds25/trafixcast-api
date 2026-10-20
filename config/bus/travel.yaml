@@ -1,0 +1,15 @@
+﻿# Bus ride time, by the same traffic data as the road estimate. A bus is slower than a car in the same traffic, and it also stands at stops to let people
+# on and off. So: ride = distance along the route / bus speed + time standing at stops. The bus speed is the road speed for this trip at this time
+# (TomTom's predicted traffic for the same two places, the same lookup the road planner uses) times bus_speed_factor. Every number is an assumption.
+bus_speed_factor: 1.2          # buses keep to main roads and use priority lanes on some corridors, so a little faster than the whole-trip car average; stops are added on top (see below)
+min_kmh: 9                     # never slower than this, never faster than max_kmh
+max_kmh: 32
+path_detour: 1.05              # the stops are joined by straight lines about 400 m apart, so streets are only a little longer
+fallback_car_kmh: {peak: 16, normal: 26}   # when no traffic lookup is available: a typical Bengaluru car speed
+peak_hours: [8, 9, 10, 17, 18, 19]
+# time standing at stops: minutes per stop, and the share of stops where the bus really stops (the rest are skipped when nobody waits or gets off)
+stop_dwell_min: {ordinary: 0.3, vajra: 0.2, vayu_vajra: 0.15}
+stop_share: {ordinary: 0.55, vajra: 0.4, vayu_vajra: 0.15}
+crowd_dwell_factor: {low: 0.7, moderate: 1.0, high: 1.4, packed: 1.8}   # a fuller bus takes longer to load and unload
+hub_dwell_min: 1.5             # extra at a bus station or big stand, where the bus waits for passengers
+hub_words: [bus station, ttmc, terminal, depot, majestic, kr market, shivajinagar, shanthinagara]
