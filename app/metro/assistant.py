@@ -17,12 +17,10 @@ REFUSAL = "I can only help with Namma Metro trips here. Tell me where you are st
 NOT_BENGALURU = "The metro planner covers Bengaluru's Namma Metro only."
 NO_DATA = "Metro data is not available right now. Please try again in a moment."
 # live claims, and platform numbers (allowed only when the data says verified, see _ok)
-_BAD = re.compile(r"\b(live|real[- ]?time|right now|at the moment|currently (?:crowded|packed|busy|full)|is arriving|will arrive in)\b", re.I)
 _PLATFORM = re.compile(r"\bplatform\s*(?:no\.?|number|#)?\s*(\d+)", re.I)
 
 
 BOOK_URL = "https://wa.me/918105556677?text=Hi"  # BMRCL's official WhatsApp ticketing: a server constant, the model never writes a link
-_LINK = re.compile(r"https?:|wa\.me|www\.|\.com\b|\.in\b", re.I)
 
 
 def system(now: datetime, mode: str = "metro") -> str:
@@ -132,13 +130,13 @@ def _unknown(e: Unknown) -> str:
 def _ok(text: str, facts: dict) -> bool:
     """No live claims, and a platform number only if the result gave that very number as verified."""
     verified = {str(p) for p in facts.get("verified_platform_numbers", [])}
-    return not _BAD.search(text) and not _LINK.search(text) and all(m[1] in verified for m in _PLATFORM.finditer(text))
+    return not chat._live_claim(text) and not chat._LINK.search(text) and all(m[1] in verified for m in _PLATFORM.finditer(text))
 
 
 def _free(text, said: list[str]) -> str:
-    """Model text for an ask or info: cleaned, no live claims, and no number the user did not type."""
-    t = chat._clean(text, 300)
-    return t if t and not _BAD.search(t) and not _LINK.search(t) and chat._numbers(t) <= chat._numbers(" ".join(said)) and not _PLATFORM.search(t) else ""
+    """Model text for an ask or info: cleaned, no live claims, no number or name the user did not type, no platform number."""
+    t = chat.free_text(text, said)
+    return "" if _PLATFORM.search(t) else t
 
 
 def _plan(inp: dict, net, providers, said: list[str], now: datetime):
