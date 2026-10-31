@@ -9,7 +9,6 @@ from fastapi import HTTPException
 from app import chat
 from app.bus import planner
 from app.bus.data import get_bus
-from app.metro import assistant as metro
 from app.service import resolve
 
 REFUSAL = "I can only help with BMTC bus trips here. Tell me where you are starting, where you are going and when."
@@ -136,10 +135,6 @@ def _plan(inp: dict, said: list[str], now: datetime, providers=None):
     return _text(plan, shakti), {"type": "bus_plan", "bus": plan, "shakti": shakti}
 
 
-def _ok(text: str) -> bool:
-    return not metro._BAD.search(text) and not metro._LINK.search(text)
-
-
 def handle(req, first, providers, now: datetime) -> dict:
     call = next((b for b in first.content if b.type == "tool_use"), None)
     if call is None or not isinstance(call.input, dict):
@@ -148,10 +143,8 @@ def handle(req, first, providers, now: datetime) -> dict:
         return {"reply": NOT_BENGALURU, "card": None}
     said = [m.content for m in req.messages if m.role == "user"]
     if call.name == "reply_to_user":
-        kind = call.input.get("kind")
-        text = chat._clean(call.input.get("text", ""), 300)
-        ok = text and _ok(text) and chat._numbers(text) <= chat._numbers(" ".join(said))
-        return {"reply": text if kind in ("ask", "info") and ok else REFUSAL, "card": None}
+        text = chat.free_text(call.input.get("text", ""), said)
+        return {"reply": text if call.input.get("kind") in ("ask", "info") and text else REFUSAL, "card": None}
     if call.name != "bus_plan":
         return {"reply": REFUSAL, "card": None}
     text, card = _plan(call.input, said, now, providers)
