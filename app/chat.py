@@ -418,6 +418,62 @@ def _clean(text, limit: int) -> str:
     return "" if "`" in t or "http" in t.lower() else t  # nothing code-like or linked ever reaches the screen
 
 
+# Claims the app cannot back: live data, certainty, and links. Shared by every mode (metro and bus import these).
+_BAD = re.compile(r"\b(live|real[- ]?time|right now|at the moment|currently (?:crowded|packed|busy|full)|is arriving|will arrive in|guarantee\w*|for sure|definitely|100 ?%)\b(?! in\b)", re.I)
+_LINK = re.compile(r"https?:|wa\.me|www\.|\.com\b|\.in\b", re.I)
+_NEG = re.compile(r"\b(?:not|no|never|without|cannot)\b|n't", re.I)
+# a user asking to break the rules, reveal secrets, or abusing the bot: answered with the fixed refusal, no model call
+_INJECT = re.compile(
+    r"\b(?:ignore|disregard|forget|override|bypass)\b.{0,40}\b(?:instructions?|rules?|prompt|guidelines?|programming|restrictions?)\b"
+    r"|\b(?:system|developer|hidden|initial|original)\s+(?:prompt|message|instructions?)\b|\byour\s+(?:instructions|prompt|rules)\b"
+    r"|\bapi[ _-]?keys?\b|\b(?:secrets?|passwords?|credentials?|access tokens?)\b|\bjailbreak|\bdeveloper mode\b|\byou are now\b|\bpretend (?:to be|you)\b"
+    r"|\bother users?\b|\bfuck\w*|\bbitch\w*|\bbastard|\basshole|\bmadarchod|\bbhenchod|\bchutiya", re.I)
+_OTHER_CITY = re.compile(
+    r"\b(?:mumbai|bombay|delhi|kolkata|calcutta|hyderabad|pune|ahmedabad|jaipur|kochi|cochin|mysuru|mysore|lucknow|noida|gurgaon|gurugram|chandigarh|goa)\b", re.I)
+_ALLOW = set("""i trafixcast trafi namma metro rs bmtc bmrcl ist ac shakti karnataka india tomtom open meteo openstreetmap whatsapp upi vajra vayu
+ monday tuesday wednesday thursday friday saturday sunday january february march april may june july august september october november december
+ bengaluru bangalore""".split())
+
+
+def _live_claim(text: str) -> bool:
+    """A live/certainty claim that is not negated ("we do not have live tracking" is fine)."""
+    return any(not _NEG.search(text[max(0, m.start() - 30):m.start()]) for m in _BAD.finditer(text))
+
+
+def _invented(text: str, known: str) -> bool:
+    """A capitalised name (mid-sentence) or a route code like 500D that is neither in `known` nor a Trafixcast word."""
+    words = set(re.findall(r"[a-z0-9]+", known.lower())) | _ALLOW | {w for c in load_yaml("cities.yaml").values() for w in _norm(c["name"]).split()}
+    for m in re.finditer(r"\b[A-Za-z]*\d[A-Za-z0-9]*\b|\b[A-Z][A-Za-z]+\b", text):
+        w = m[0].lower()
+        if w in words or re.fullmatch(r"\d+(?:am|pm|min|km|hr|mm|m|st|nd|rd|th)?", w):
+            continue
+        at_start = text[:m.start()].rstrip()[-1:] in ("", ".", "!", "?", ":", '"')
+        if at_start and m[0][0].isupper() and not any(ch.isdigit() for ch in w):
+            continue  # first word of a sentence: an ordinary word is capitalised there, so only mid-sentence capitals are checked
+        return True
+    return False
+
+
+def free_text(text, said: list[str], extra: str = "") -> str:
+    """Model text for an ask or info: cleaned, no live claims or links, and no number or name the user did not type."""
+    t, typed = _clean(text, 300), " ".join(said)
+    ok = t and not _live_claim(t) and not _LINK.search(t) and _numbers(t) <= _numbers(typed) and not _invented(t, typed + " " + extra)
+    return t if ok else ""
+
+
+def guard(req: "ChatRequest") -> str | None:
+    """A fixed reply, without calling the model, for rule-breaking or abusive input and for places a mode does not cover."""
+    from app.metro import assistant
+    from app.bus import assistant as bus_assistant
+    last = req.messages[-1].content
+    refusal = {"road": REFUSAL, "bus": bus_assistant.REFUSAL}.get(req.mode, assistant.REFUSAL)
+    if _INJECT.search(last):
+        return refusal
+    if req.mode != "road" and (req.city != "bengaluru" or _OTHER_CITY.search(last)):
+        return bus_assistant.NOT_BENGALURU if req.mode == "bus" else assistant.NOT_BENGALURU
+    return None
+
+
 _spend = {"day": None, "n": 0}
 _lock = threading.Lock()
 
@@ -486,8 +542,10 @@ def _worded(req: ChatRequest, now: datetime, first, call, facts: dict) -> str | 
     if c is None or c.name != "reply_to_user" or not isinstance(c.input, dict) or c.input.get("kind") != "result":
         return None
     text = _clean(c.input.get("text", ""), 300)
-    allowed = _numbers(json.dumps(facts)) | _numbers(req.messages[-1].content) | _numbers(facts.get("searched_between", ""))
-    return text if text and _numbers(text) <= allowed else None
+    typed = " ".join(m.content for m in req.messages if m.role == "user")
+    allowed = _numbers(json.dumps(facts)) | _numbers(typed) | _numbers(facts.get("searched_between", ""))
+    ok = text and _numbers(text) <= allowed and not _live_claim(text) and not _LINK.search(text) and not _invented(text, json.dumps(facts) + " " + typed)
+    return text if ok else None
 
 
 def _now() -> datetime:
@@ -495,6 +553,8 @@ def _now() -> datetime:
 
 
 def reply(req: ChatRequest, providers, now: datetime | None = None) -> dict:
+    if fixed := guard(req):
+        return {"reply": fixed, "card": None}
     if not get_settings().gemini_api_key or not _within_budget():
         raise HTTPException(503, UNAVAILABLE)
     now = now or _now()
@@ -534,6 +594,6 @@ def reply(req: ChatRequest, providers, now: datetime | None = None) -> dict:
             text = _worded(req, now, r, call, facts) or text
         return {"reply": text, "card": card}
     if call.name == "reply_to_user" and isinstance(call.input, dict):
-        kind, text = call.input.get("kind"), _clean(call.input.get("text", ""), 300)
+        kind, text = call.input.get("kind"), free_text(call.input.get("text", ""), [m.content for m in req.messages if m.role == "user"])
         return {"reply": text if kind in ("ask", "info") and text else REFUSAL, "card": None}
     return {"reply": REFUSAL, "card": None}
